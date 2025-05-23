@@ -1,0 +1,268 @@
+---
+// layouts/MainLayout.astro
+export interface Props {
+  title: string;
+  description?: string;
+  bannerTitle?: string;
+  bannerDescription?: string;
+  showBanner?: boolean;
+}
+
+const {
+  title,
+  description = "Sejal Vaidya - Tech Professional",
+  bannerTitle = "Sejal Vaidya",
+  bannerDescription = "Tech Professional & Writer",
+  showBanner = true
+} = Astro.props;
+---
+
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>{title}</title>
+    <meta name="description" content={description} />
+    <link rel="stylesheet" href="/assets/css/main.css" />
+    <noscript><link rel="stylesheet" href="/assets/css/noscript.css" /></noscript>
+    <link rel="stylesheet" href="/assets/css/scroll-buttons.css" />
+  </head>
+
+  <body class="is-preload">
+    <div id="wrapper">
+      <!-- Header -->
+      <header id="header" class={showBanner ? "alt" : ""}>
+        <a href="/" class="logo"><strong>Sejal</strong> <span>Vaidya</span></a>
+        <nav>
+          <a href="#menu">Menu</a>
+        </nav>
+      </header>
+
+      <!-- Menu
+      <ul class="links">
+          <li><a href="/">Home</a></li>
+          <li><a href="/about">About</a></li>
+          <li><a href="/professional">Professional</a></li>
+          <li><a href="/blog">Blog</a></li>
+        </ul>
+      -->
+      <nav id="menu">
+        <ul class="actions stacked">
+          <li><a href="#contact" class="button primary fit">Contact</a></li>
+        </ul>
+      </nav>
+
+      {showBanner && (
+        <section id="banner" class="major" style="background-image: url('/assets/images/beach.jpg');">
+          <div class="inner">
+            <header class="major">
+              <h1>{bannerTitle}</h1>
+            </header>
+            <div class="content">
+              <p>{bannerDescription}</p>
+            </div>
+          </div>
+          <a href="#one" class="more scrolly"></a>
+        </section>
+      )}
+
+      <!-- Main Content -->
+      <div id="main">
+        <slot />
+      </div>
+
+      <!-- Contact Section -->
+      <section id="contact">
+        <div class="inner text-center contact-header">
+          <section class="contact-title">
+            <header class="major">
+              <h2>Contact</h2>
+            </header>
+          </section>
+          <section>
+            <ul class="icons contact-icons">
+              <li><a href="https://www.linkedin.com/in/vaidyasejal/" class="icon brands alt fa-linkedin-in"><span class="label">LinkedIn</span></a></li>
+              <li><a href="https://github.com/sejalv" class="icon brands alt fa-github"><span class="label">GitHub</span></a></li>
+              <li><a href="https://sejalv.substack.com/welcome" class="icon solid alt fa-bookmark"><span class="label">Substack</span></a></li>
+            </ul>
+          </section>
+        </div>
+
+        <div class="inner">
+          <section class="contact-form">
+            <!-- Success/Error Messages -->
+            <div id="form-messages" style="display: none; margin-bottom: 2rem;">
+              <div id="success-message" class="alert alert-success" style="display: none;">
+                <strong>Thank you!</strong> Your message has been sent successfully. I'll get back to you soon!
+              </div>
+              <div id="error-message" class="alert alert-error" style="display: none;">
+                <strong>Oops!</strong> There was an error sending your message. Please try again.
+              </div>
+            </div>
+
+            <form id="contact-form" method="post" action="https://formspree.io/f/xkndwkyv">
+              <div class="fields">
+                <div class="field half">
+                  <label for="name">Name</label>
+                  <input type="text" name="name" id="name" required />
+                </div>
+                <div class="field half">
+                  <label for="email">Email</label>
+                  <input type="email" name="email" id="email" required />
+                </div>
+                <div class="field">
+                  <label for="message">Message</label>
+                  <textarea name="message" id="message" rows="2" required></textarea>
+                </div>
+              </div>
+              <ul class="actions">
+                <li><input type="submit" value="Send Message" class="primary" id="submit-btn" /></li>
+                <li><input type="reset" value="Clear" /></li>
+              </ul>
+            </form>
+          </section>
+        </div>
+      </section>
+
+      <!-- Footer -->
+      <footer id="footer">
+        <div class="inner">
+          <ul class="copyright">
+            <li>&copy; Sejal Vaidya</li>
+            <li>Design: <a href="https://html5up.net/forty">HTML5 UP</a> and Astro</li>
+          </ul>
+        </div>
+      </footer>
+    </div>
+
+    <!-- Scripts -->
+    <script is:inline src="/assets/js/jquery.min.js"></script>
+    <script is:inline src="/assets/js/jquery.scrolly.min.js"></script>
+    <script is:inline src="/assets/js/jquery.scrollex.min.js"></script>
+    <script is:inline src="/assets/js/browser.min.js"></script>
+    <script is:inline src="/assets/js/breakpoints.min.js"></script>
+    <script is:inline src="/assets/js/util.js"></script>
+    <script is:inline src="/assets/js/main.js"></script>
+    <script is:inline src="/assets/js/smooth-scroll.js"></script>
+
+    <!-- Contact Form Handler -->
+    <script is:inline>
+      document.addEventListener('DOMContentLoaded', function() {
+        const form = document.getElementById('contact-form');
+        const submitBtn = document.getElementById('submit-btn');
+        const messagesDiv = document.getElementById('form-messages');
+        const successMsg = document.getElementById('success-message');
+        const errorMsg = document.getElementById('error-message');
+
+        if (form) {
+          form.addEventListener('submit', async function(e) {
+            e.preventDefault();
+
+            // Show loading state
+            submitBtn.value = 'Sending...';
+            submitBtn.classList.add('loading');
+
+            // Hide any previous messages
+            messagesDiv.style.display = 'none';
+            successMsg.style.display = 'none';
+            errorMsg.style.display = 'none';
+
+            try {
+              const formData = new FormData(form);
+              const response = await fetch(form.action, {
+                method: 'POST',
+                body: formData,
+                headers: {
+                  'Accept': 'application/json'
+                }
+              });
+
+              if (response.ok) {
+                // Success
+                successMsg.style.display = 'block';
+                messagesDiv.style.display = 'block';
+                form.reset();
+
+                // Scroll to success message
+                messagesDiv.scrollIntoView({ behavior: 'smooth', block: 'center' });
+              } else {
+                throw new Error('Form submission failed');
+              }
+            } catch (error) {
+              // Error
+              errorMsg.style.display = 'block';
+              messagesDiv.style.display = 'block';
+
+              // Scroll to error message
+              messagesDiv.scrollIntoView({ behavior: 'smooth', block: 'center' });
+            } finally {
+              // Reset button
+              submitBtn.value = 'Send Message';
+              submitBtn.classList.remove('loading');
+            }
+          });
+        }
+      });
+    </script>
+
+    <style>
+      /* Contact section styling */
+      .contact-header {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        margin-bottom: -6rem;
+      }
+
+      .contact-title {
+        width: 60%;
+        padding-right: 0;
+        box-sizing: border-box;
+        border-right: none !important;
+      }
+
+      .contact-icons {
+        justify-content: flex-end;
+        display: flex;
+      }
+
+      .contact-form {
+        width: 100%;
+        padding-right: 0;
+        box-sizing: border-box;
+        border-right: none !important;
+        margin-top: -5rem;
+      }
+
+      #footer {
+        margin-top: -1rem;
+      }
+
+      /* Alert message styling */
+      .alert {
+        padding: 1rem 1.5rem;
+        border-radius: 4px;
+        margin-bottom: 1rem;
+      }
+
+      .alert-success {
+        background-color: #d4edda;
+        border: 1px solid #c3e6cb;
+        color: #155724;
+      }
+
+      .alert-error {
+        background-color: #f8d7da;
+        border: 1px solid #f5c6cb;
+        color: #721c24;
+      }
+
+      /* Loading state for submit button */
+      .loading {
+        opacity: 0.6;
+        pointer-events: none;
+      }
+    </style>
+  </body>
+</html>

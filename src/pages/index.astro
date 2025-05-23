@@ -1,0 +1,159 @@
+---
+// pages/index.astro
+import MainLayout from '../layouts/MainLayout.astro';
+
+const siteConfig = {
+  title: "Sejal Vaidya",
+  bannerTitle: "Sejal Vaidya",
+  bannerDescription: "Tech Professional & Writer"
+};
+
+const sections = [
+  {
+    id: "professional",
+    title: "Professional",
+    description: "Data & ML Platforms | Tech Leadership | Data Strategy",
+    image: "/assets/images/professional.jpg",
+    url: "/professional",
+    color: "style4"
+  },
+  {
+    id: "blog",
+    title: "Blog",
+    description: "Data Landscape | Berlin Tech Ecosystem | Personal Essays",
+    image: "/assets/images/blog.jpg",
+    url: "/blog",
+    color: "style3"
+  }
+];
+
+const aboutSection = {
+  title: "About Me",
+  description: "Hi, I’m Sejal — a seasoned professional focused on platform strategy for Data and ML, and a writer with a soft spot for comedy and culture.",
+  backgroundImage: "/assets/images/berlin-fshain.jpg"
+};
+---
+
+<MainLayout
+  title={siteConfig.title}
+  bannerTitle={siteConfig.bannerTitle}
+  bannerDescription={siteConfig.bannerDescription}
+  showBanner={true}
+>
+  <!-- Tiles Section
+  // Until the pages are ready
+    <h3><a href={section.url} class="link">{section.title}</a></h3>
+  -->
+  <section id="one" class="tiles">
+    {sections.map((section) => (
+      <article class={section.color} style={`background-image: url(${section.image});`}>
+        <span class="image">
+          <img src={section.image} alt={section.title} />
+        </span>
+        <header class="major">
+          <h3>{section.title}</h3>
+          <p>{section.description}</p>
+        </header>
+      </article>
+    ))}
+    <div class="scroll-button-wrapper">
+      <a href="#two" class="more scrolly"></a>
+    </div>
+  </section>
+
+  <!-- About Section
+  <ul class="actions text-center">
+        <li><a href="/about" class="button next">More</a></li>
+      </ul>
+  -->
+  <section id="two" class="about-section" style={`background-image: url('${aboutSection.backgroundImage}');`}>
+    <div class="inner">
+      <header class="major">
+        <h2>{aboutSection.title}</h2>
+      </header>
+      <p>{aboutSection.description}</p>
+
+    </div>
+    <a href="#contact" class="more scrolly"></a>
+  </section>
+</MainLayout>
+
+<style>
+  /* Banner sizing */
+  :global(#banner) {
+    height: 66vh !important;
+    min-height: 200px !important;
+    max-height: 66vh !important;
+  }
+
+  /* Tiles grid layout */
+  .tiles {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    height: 60vh;
+    background-image: url("/assets/images/profile_picture.jpg") !important;
+    position: relative;
+  }
+
+  .tiles article {
+    height: 100%;
+    width: 100%;
+  }
+
+  .scroll-button-wrapper {
+    position: absolute;
+    bottom: 0;
+    left: 50%;
+    transform: translateX(-50%);
+    z-index: 10;
+  }
+
+  /* About section */
+  #two {
+    margin-top: 0;
+    position: relative;
+  }
+
+  /* Tablet responsiveness */
+  @media screen and (max-width: 980px) {
+    :global(#banner) {
+      height: 30vh;
+    }
+
+    .tiles {
+      height: 70vh;
+    }
+
+    .about-section {
+      height: 30vh !important;
+    }
+
+    .about-section .inner {
+      max-width: 80%;
+      padding: 2rem 2rem;
+    }
+  }
+
+  /* Mobile responsiveness */
+  @media screen and (max-width: 736px) {
+    .tiles {
+      grid-template-columns: 1fr;
+      height: auto;
+    }
+
+    .tiles article {
+      height: 40vh;
+    }
+
+    .about-section {
+      height: auto !important;
+      min-height: 60vh !important;
+      padding: 0;
+    }
+
+    .about-section .inner {
+      max-width: 90%;
+      padding: 3rem 1.5rem;
+    }
+  }
+</style>
