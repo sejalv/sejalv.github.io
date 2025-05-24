@@ -1,0 +1,137 @@
+---
+// pages/blog.astro
+import MainLayout from '../layouts/MainLayout.astro';
+
+// Sample blog posts data
+const posts = [
+  {
+    title: "Data Visualization Best Practices",
+    date: "March 1, 2025",
+    excerpt: "Effective data visualization is key to communicating insights. This post covers best practices and common pitfalls to avoid.",
+    image: "/assets/images/blog/data-viz.jpg",
+    url: "/blog/data-visualization-best-practices"
+  },
+  {
+    title: "Machine Learning for Product Managers",
+    date: "February 15, 2025",
+    excerpt: "A non-technical guide to understanding machine learning concepts and how they can be applied to product development.",
+    image: "/assets/images/blog/ml-product.jpg",
+    url: "/blog/ml-for-product-managers"
+  },
+  {
+    title: "From Data to Decisions: Building a Data-Driven Culture",
+    date: "January 22, 2025",
+    excerpt: "How organizations can foster a culture that values data-driven decision making at all levels.",
+    image: "/assets/images/blog/data-culture.jpg",
+    url: "/blog/data-driven-culture"
+  },
+  {
+    title: "The Future of Analytics: Trends to Watch",
+    date: "December 10, 2024",
+    excerpt: "Exploring emerging technologies and methodologies that are shaping the future of data analytics.",
+    image: "/assets/images/blog/analytics-trends.jpg",
+    url: "/blog/future-of-analytics"
+  }
+];
+---
+
+<MainLayout title="Blog | Sejal Vaidya" showBanner={false}>
+  <div id="main">
+    <section id="one">
+      <div class="inner">
+        <header class="major">
+          <h1>Blog</h1>
+        </header>
+        <p>
+          Thoughts, insights, and explorations on data science, product development, and their intersection.
+          Join me as I share my experiences and learnings from the world of data and product.
+        </p>
+      </div>
+    </section>
+
+    <section id="two" class="inner">
+      <div class="blog-grid">
+        {posts.map((post) => (
+          <article class="blog-card">
+            <a href={post.url} class="blog-image">
+              <img src={post.image} alt={post.title} />
+            </a>
+            <div class="blog-content">
+              <span class="date">{post.date}</span>
+              <h3><a href={post.url}>{post.title}</a></h3>
+              <p>{post.excerpt}</p>
+              <a href={post.url} class="read-more">Read More →</a>
+            </div>
+          </article>
+        ))}
+      </div>
+    </section>
+  </div>
+
+  <style>
+    .blog-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+      gap: 2em;
+      margin: 2em 0;
+    }
+
+    .blog-card {
+      background: rgba(0, 0, 0, 0.05);
+      border-radius: 4px;
+      overflow: hidden;
+      transition: transform 0.3s ease, box-shadow 0.3s ease;
+    }
+
+    .blog-card:hover {
+      transform: translateY(-5px);
+      box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
+    }
+
+    .blog-image {
+      display: block;
+      width: 100%;
+      height: 200px;
+      overflow: hidden;
+    }
+
+    .blog-image img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      transition: transform 0.3s ease;
+    }
+
+    .blog-card:hover .blog-image img {
+      transform: scale(1.05);
+    }
+
+    .blog-content {
+      padding: 1.5em;
+    }
+
+    .date {
+      display: block;
+      font-size: 0.8em;
+      color: rgba(212, 212, 255, 0.5);
+      margin-bottom: 0.5em;
+    }
+
+    .blog-content h3 {
+      margin-bottom: 0.5em;
+      font-size: 1.5em;
+    }
+
+    .read-more {
+      display: inline-block;
+      margin-top: 1em;
+      font-weight: bold;
+      border-bottom: 1px solid transparent;
+      transition: border-bottom-color 0.3s ease;
+    }
+
+    .read-more:hover {
+      border-bottom-color: currentColor;
+    }
+  </style>
+</MainLayout>

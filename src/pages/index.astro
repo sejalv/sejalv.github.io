@@ -14,13 +14,13 @@ const sections = [
     title: "Professional",
     description: "Data & ML Platforms | Tech Leadership | Data Strategy",
     image: "/assets/images/professional.jpg",
-    url: "/professional",
+    url: "/",
     color: "style4"
   },
   {
     id: "blog",
     title: "Blog",
-    description: "Data Landscape | Berlin Tech Ecosystem | Personal Essays",
+    description: "Data Landscape | Berlin | Personal Essays",
     image: "/assets/images/blog.jpg",
     url: "/blog",
     color: "style3"
@@ -40,10 +40,7 @@ const aboutSection = {
   bannerDescription={siteConfig.bannerDescription}
   showBanner={true}
 >
-  <!-- Tiles Section
-  // Until the pages are ready
-    <h3><a href={section.url} class="link">{section.title}</a></h3>
-  -->
+  <!-- Tiles Section  -->
   <section id="one" class="tiles">
     {sections.map((section) => (
       <article class={section.color} style={`background-image: url(${section.image});`}>
@@ -51,7 +48,7 @@ const aboutSection = {
           <img src={section.image} alt={section.title} />
         </span>
         <header class="major">
-          <h3>{section.title}</h3>
+          <h3><a href={section.url} class="link">{section.title}</a></h3>
           <p>{section.description}</p>
         </header>
       </article>
@@ -63,8 +60,8 @@ const aboutSection = {
 
   <!-- About Section
   <ul class="actions text-center">
-        <li><a href="/about" class="button next">More</a></li>
-      </ul>
+            <li><a href="/about" class="button next">More</a></li>
+        </ul>
   -->
   <section id="two" class="about-section" style={`background-image: url('${aboutSection.backgroundImage}');`}>
     <div class="inner">
@@ -72,7 +69,6 @@ const aboutSection = {
         <h2>{aboutSection.title}</h2>
       </header>
       <p>{aboutSection.description}</p>
-
     </div>
     <a href="#contact" class="more scrolly"></a>
   </section>
