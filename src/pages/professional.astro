@@ -1,0 +1,251 @@
+---
+// pages/professional.astro
+import MainLayout from '../layouts/MainLayout.astro';
+
+// Define your career history
+const careerHistory = [
+  {
+    id: "company-7",
+    company: "Consulting",
+    period: "2024 - Present",
+    location: "Berlin, Germany",
+    title: "Data Lead",
+    description: "Consulting growing startups on modern data architecture and strategic initiatives.",
+    achievements: [
+        "Built an AWS-based data infrastructure with Iceberg for modern lakehouse architecture and self-service analytics",
+        "Advised on data strategy and roadmap for growth optimization, feature adoption & customer intelligence",
+    ],
+    technologies: ["AWS", "FiveTran", "Metabase", "SQL", "Mixpanel"],
+  },
+  {
+    id: "company-6",
+    company: "Zalando",
+    period: "2022 - 2023",
+    location: "Berlin, Germany",
+    title: "Staff ML Engineer",
+    description: "Scaled experimentation platforms and A/B Testing frameworks to optimize pricing models.",
+    achievements: [
+      "Conducted A/B testing for marketing campaigns",
+      "Supported product development with market analysis",
+      "Built scalable ETL processes handling 2TB+ daily",
+    ],
+    technologies: ["Python", "Airflow", "Spark", "DBT", "AWS", "Kubernetes", "Amplitude", "Tableau"],
+  },
+  {
+    id: "company-5",
+    company: "Temedica",
+    period: "2020 - 2022",
+    location: "Munich, Germany",
+    title: "Data Platform Lead",
+    description: "Led of development of Health data platform for patient journey research from scratch, and to provide clinical insights to pharmaceutical clients.",
+    achievements: [
+      "Built NLP pipeline for customer feedback analysis",
+      "Established data governance framework",
+      "Designed executive KPI dashboard",
+    ],
+    technologies: ["Python", "TensorFlow", "SQL", "Tableau", "R"],
+  },
+
+  {
+    id: "company-4",
+    company: "Freeletics",
+    period: "2018 - 2020",
+    location: "Munich, Germany",
+    title: "Senior Data Engineer",
+    description: "Redesigned data platform for real-time analytics on fitness journeys of 39+ MM users.",
+    achievements: [
+      "Spearheaded migration to cloud architecture",
+      "Implemented real-time data processing architecture",
+      "Created recommendation engine increasing user engagement by 15%",
+    ],
+    technologies: ["Python", "Scala", "Databricks", "Azure", "Kafka"],
+  },
+  {
+    id: "company-3",
+    company: "LexisNexis Risk Solutions",
+    period: "2015 - 2016",
+    location: "Mumbai, India",
+    title: "Senior Software Engineer",
+    description: "Developed data products for Fraud Analytics in Life & Health Insurance space.",
+    achievements: [
+      "Maintained customer database",
+      "Developed ETL scripts for data integration",
+      "Identified $1.2M in cost-saving opportunities",
+    ],
+    technologies: ["SQL", "Excel", "Tableau", "Python basics"],
+  },
+  {
+    id: "company-2",
+    company: "JPMorgan Chase Services",
+    period: "2013 - 2015",
+    location: "Mumbai, India",
+    title: "Business Intelligence Developer",
+    description: "Data modeling & BI reporting for Credit Risk, Finance & Marketing Analytics groups.",
+    achievements: [
+      "Created weekly performance reports",
+      "Supported marketing analytics initiatives",
+      "Streamlined reporting processes",
+    ],
+    technologies: ["SQL", "Python", "Excel", "Power BI", "Looker"],
+  },
+  {
+    id: "company-1",
+    company: "Here Technologies",
+    period: "2009 - 2013",
+    location: "Mumbai, India",
+    title: "Data Analyst",
+    description: "Data management & Quality Analysis for navigation maps in automotives.",
+    achievements: [
+      "Reduced process inefficiencies by 20%",
+      "Implemented tracking system for KPIs",
+      "Automated reporting systems saving 20 hours weekly",
+    ],
+    technologies: ["Excel", "SQL", "JIRA", "Confluence"],
+  }
+];
+---
+
+<MainLayout
+  title="Professional Experience | Sejal Vaidya"
+  bannerTitle="Professional Journey"
+  bannerDescription="14 Years of Data & Analytics Experience"
+  showBanner={false}
+>
+  <div id="main">
+    <section id="one" class="fixed-header">
+      <div class="inner">
+        <header class="major">
+          <h1>Professional</h1>
+        </header>
+        <p align="left">With 14+ years of Tech industry experience building scalable data platforms in Digital Health, FinTech and e-Commerce.
+        <br/>
+        Proven track record in self-serving, reliable, and high-impact data systems; embedding platform thinking within cross-functional teams, and shaping long-term data strategies aligned with business goals.
+        <br/>
+        Currently focused on Data Architecture and Platform Leadership, and designing modular infrastructure to enable analytics, ML, and product growth.
+        </p>
+      </div>
+    </section>
+
+    <!-- <a href={post.url} class="read-more">Read More →</a> -->
+
+    <section id="two" class="inner">
+      <header class="major">
+          <h2>Experience</h1>
+      </header>
+
+      <div class="career-grid">
+        {careerHistory.map((job) => (
+          <article class="career-card">
+            <div class="career-content">
+              <h3>{job.company}</h3>
+              <span class="date">{job.period}</span>
+              <span class="date">{job.location}</span>
+              <p class="read-more">{job.title}</p>
+              <p>{job.description}</p>
+            </div>
+          </article>
+        ))}
+      </div>
+    </section>
+  </div>
+
+  <!--
+  // .read-more:hover {
+    //  border-bottom-color: currentColor;
+    // }
+  -->
+
+  <style>
+    .career-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+      gap: 2em;
+      margin: 2em 0;
+    }
+
+    .career-card {
+      background: rgba(0, 0, 0, 0.05);
+      border-radius: 4px;
+      overflow: hidden;
+      transition: transform 0.3s ease, box-shadow 0.3s ease;
+    }
+
+    .career-card:hover {
+      transform: translateY(-5px);
+      box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
+    }
+
+    .career-image {
+      display: block;
+      width: 100%;
+      height: 250px;
+      overflow: hidden;
+    }
+
+    .career-image img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      transition: transform 0.3s ease;
+    }
+
+    .career-card:hover .career-image img {
+      transform: scale(1.05);
+    }
+
+    .career-content {
+      padding: 1.5em;
+    }
+
+    .date {
+      display: block;
+      font-size: 0.8em;
+      font-weight: bold;
+      color: rgba(212, 212, 255, 0.5);
+      margin-bottom: 1em;
+    }
+
+    .career-content h3 {
+      margin-bottom: 0.5em;
+      font-size: 1.5em;
+    }
+
+    .read-more {
+      display: inline-block;
+      font-style: italic;
+      border-bottom: 1px solid transparent;
+      transition: border-bottom-color 0.3s ease;
+    }
+
+    .fixed-header {
+        width: 100%;
+        background-color: #242943; /* Green: #87c5a4; */
+        color: white;
+        padding: 0.5rem 0;
+        z-index: 10;
+    }
+
+    .fixed-header .inner {
+        width: 90%;
+        max-width: 1200px;
+        margin: 0 auto;
+        text-align: center;
+    }
+
+    /* Background image with overlay */
+    .fixed-header::before {
+        content: "";
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 67.6%;
+        background-image: url('/assets/images/night-skyline.jpg');
+        background-size: cover;
+        background-position: center;
+        background-attachment: fixed; /* Creates a parallax effect */
+        opacity: 0.15; /* Subtle image visibility */
+    }
+
+  </style>
+</MainLayout>
