@@ -2,14 +2,23 @@
 // pages/blog.astro
 import MainLayout from '../layouts/MainLayout.astro';
 
-// Sample book posts data
+// Book posts data
+
+//{
+//    title: "Never Split the Difference",
+//    subtext: "Negotiating As If Your Life Depends On It",
+ //   author: "Christopher Voss",
+ //   excerpt: "Practical negotiation strategies for everyday life, that focus on building relationships, emotional intelligence and tactical empathy.",
+ //   image: "/assets/images/nstd.jpg",
+ // },
+
 const posts = [
   {
     title: "The Manager's Path",
     subtext: "A Guide for Tech Leaders Navigating Growth and Change",
     author: "Camille Fournier",
     excerpt: "Grounded in real-life scenarios of engineering culture, and comes with tactical advice for engineers stepping into leadership on handling challenges and managing people in Tech.",
-    image: "/assets/images/managers_path.jpg",
+    image: "/assets/images/mp.jpg",
   },
   {
     title: "Invisible Women",
@@ -22,7 +31,7 @@ const posts = [
     title: "Thinking, Fast and Slow",
     author: "Daniel Kahneman",
     excerpt: "On dual-system thinking, understanding cognitive biases in humans, and tools for improved decision-making.",
-    image: "/assets/images/thinking-fast-and-slow.jpg",
+    image: "/assets/images/tfas.jpg",
   },
   {
     title: "Sapiens",
@@ -30,13 +39,6 @@ const posts = [
     author: "Yuval Noah Harari",
     excerpt: "Engaging storytelling that weaves together insights from history, science, and economics to reflect upon human nature, identity, and culture.",
     image: "/assets/images/sapiens.jpeg",
-  },
-  {
-    title: "Never Split the Difference",
-    subtext: "Negotiating As If Your Life Depends On It",
-    author: "Christopher Voss",
-    excerpt: "Practical negotiation strategies for everyday life, that focus on building relationships, emotional intelligence and tactical empathy.",
-    image: "/assets/images/nstd.jpg",
   },
 ];
 ---
@@ -49,7 +51,7 @@ const posts = [
           <h1>Blog</h1>
         </header>
         <p>
-          This section brings together my work in tech and creative side. You’ll find thoughts on data leadership and platform strategy, alongside pieces on feminism, satire, and life in Berlin. More updates coming soon.
+          This section brings together my work in tech and creative side. You’ll find my thoughts on data leadership and platform strategy, alongside pieces on intersectional feminism, satire, and life in Berlin. More updates coming soon.
         </p>
       </div>
     </section>
@@ -90,7 +92,7 @@ const posts = [
   <style>
     .blog-grid {
       display: grid;
-      grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+      grid-template-columns: repeat(auto-fill, minmax(275px, 1fr));
       gap: 2em;
       margin: 2em 0;
     }
