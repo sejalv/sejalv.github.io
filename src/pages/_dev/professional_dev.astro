@@ -1,27 +1,25 @@
 ---
-// pages/professional.astro
+// pages/professional_dev.astro
 
 import MainLayout from '../layouts/MainLayout.astro';
 
 // Define your career history
 const careerHistory = [
   {
-    id: "company-8",
-    company: "Bling",
-    period: "2024 - 2024",
+    id: "company-7",
+    company: "Consulting",
+    period: "2024 - Present",
     location: "Berlin, Germany",
-    title: "Data Lead (Consultant)",
-    description: "Consulted this emerging FinTech startup on data strategy and architecture initiatives, establishing foundations for scalable analytics",
+    title: "Data Lead",
+    description: "Bling: Consulted this emerging FinTech startup on data strategy and architecture initiatives, establishing foundations for scalable analytics",
     achievements: [
         "Built an AWS-based data infrastructure with Iceberg for modern lakehouse architecture and self-service analytics",
         "Advised on data strategy and roadmap for growth optimization, feature adoption & customer intelligence",
     ],
     technologies: ["AWS", "FiveTran", "Metabase", "SQL", "Mixpanel"],
   },
-
-
   {
-    id: "company-7",
+    id: "company-6",
     company: "Zalando",
     period: "2022 - 2023",
     location: "Berlin, Germany",
@@ -35,7 +33,7 @@ const careerHistory = [
     technologies: ["Python", "Airflow", "Spark", "DBT", "AWS", "Kubernetes", "Amplitude", "Tableau"],
   },
   {
-    id: "company-6",
+    id: "company-5",
     company: "Temedica",
     period: "2020 - 2022",
     location: "Munich, Germany",
@@ -48,26 +46,13 @@ const careerHistory = [
     ],
     technologies: ["Python", "TensorFlow", "SQL", "Tableau", "R"],
   },
-  {
-    id: "company-5",
-    company: "Data Talks Club",
-    period: "2020 - 2022",
-    location: "Germany",
-    title: "Co-Instructor & Speaker",
-    description: "Analyzed large datasets to extract actionable insights. Created dashboards and reports for executive decision-making.",
-    achievements: [
-      "Mentored junior engineers",
-      "Improved data accuracy by 35%",
-      "Reduced infrastructure costs by 25%",
-    ],
-    technologies: ["Excel", "Basic SQL", "Google Analytics"],
-  },
+
   {
     id: "company-4",
     company: "Freeletics",
     period: "2018 - 2020",
     location: "Munich, Germany",
-    title: "Data & Analytics Engineer",
+    title: "Senior Data Engineer",
     description: "Developed predictive models and analytics solutions for business intelligence. Collaborated with product teams to implement data-driven features.",
     achievements: [
       "Spearheaded migration to cloud architecture",
@@ -192,24 +177,63 @@ const careerHistory = [
                     ))}
                   </div>
                 </div>
-
               </div>
             </div>
           </div>
-
         </section>
       ))}
     </div>
 
-    <!-- Right side static content panel -->
+    <!-- Right side experience panel with scrollable career cards -->
     <div class="static-info-panel">
-      <div class="static-content">
-        <h2>Highlights</h2>
-        <p>My superpower?</p>
-        <p>Currently working with teams to:</p>
-        <p>My approach combines:</p>
-        <p>Past wins:</p>
-        <p>Passionate about:</p>
+      <div class="experience-content">
+        <h2>Experience</h2>
+
+        <div class="career-grid">
+          {careerHistory.map((job, index) => (
+            <article class="career-card" data-card-id={`card-${index}`}>
+              <div class="career-content">
+                <div class="card-header">
+                  <div class="card-main-info">
+                    <h3>{job.company}</h3>
+                    <span class="date">{job.period}</span>
+                    <span class="date">{job.location}</span>
+                    <p class="job-title-card">{job.title}</p>
+                  </div>
+                  <button class="expand-button" aria-label="Expand details">
+                    <svg class="plus-icon" width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                      <path d="M12 5V19M5 12H19" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                    </svg>
+                  </button>
+                </div>
+
+                <!-- Always visible short description -->
+                <p class="job-description-card">{job.description}</p>
+
+                <!-- Expandable content -->
+                <div class="expandable-content">
+                  <div class="expanded-details">
+                    <h4>Key Achievements</h4>
+                    <ul class="card-achievements">
+                      {job.achievements.map((achievement) => (
+                        <li>{achievement}</li>
+                      ))}
+                    </ul>
+
+                    <div class="card-technologies">
+                      <h4>Technologies</h4>
+                      <div class="tech-tags">
+                        {job.technologies.map((tech) => (
+                          <span class="tech-tag">{tech}</span>
+                        ))}
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </article>
+          ))}
+        </div>
       </div>
     </div>
   </div>
@@ -301,7 +325,7 @@ const careerHistory = [
 
   .fixed-header {
     width: 100%;
-    background-color: #242943;
+    background-color: #242943; /* Green: #87c5a4; */
     color: white;
     padding: 0.5rem 0;
     z-index: 10;
@@ -312,6 +336,21 @@ const careerHistory = [
     max-width: 1200px;
     margin: 0 auto;
     text-align: center;
+  }
+
+  /* Background image with overlay */
+  .fixed-header::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-image: url('/assets/images/night-skyline.jpg');
+    background-size: cover;
+    background-position: center;
+    background-attachment: fixed; /* Creates a parallax effect */
+    opacity: 0.15; /* Subtle image visibility */
   }
 
   /* Full-page timeline layout */
@@ -332,16 +371,17 @@ const careerHistory = [
   }
 
   .static-info-panel {
-    width: 35%; /* Slightly wider */
+    width: 60%; /* Slightly wider */
     height: 100%;
     background-color: #242943;
     color: white;
     display: flex;
-    align-items: center;
+    align-items: flex-start;
     justify-content: center;
     position: sticky;
     top: 0;
     right: 0;
+    overflow-y: auto; /* Enable scrolling within the panel */
   }
 
   .static-info-panel::before {
@@ -357,15 +397,208 @@ const careerHistory = [
     z-index: 1;
   }
 
-  .static-content {
+  .experience-content {
     position: relative;
     z-index: 2;
     padding: 2rem;
+    width: 100%;
+    max-width: 100%;
+  }
+
+  .experience-content h2 {
     text-align: center;
+    margin-bottom: 1rem;
+    color: white;
+  }
+
+  .experience-content > p {
+    text-align: center;
+    margin-bottom: 2rem;
+    opacity: 0.9;
+  }
+
+  /* Career grid styling adapted from professional.astro */
+  .career-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 1.5rem;
+    margin: 2rem 0;
+  }
+
+  .career-card {
+    background: rgba(255, 255, 255, 0.95);
+    border-radius: 8px;
+    overflow: hidden;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    position: relative;
+  }
+
+  .career-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
+  }
+
+  /* Expanded card takes full width */
+  .career-card.expanded {
+    grid-column: 1 / -1;
+    transform: none;
+  }
+
+  .career-card.expanded:hover {
+    transform: none;
+  }
+
+  .career-content {
+    padding: 1.5rem;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+  }
+
+  /* Card header with company info and expand button */
+  .card-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    margin-bottom: 1rem;
+  }
+
+  .card-main-info {
+    flex: 1;
+  }
+
+  .career-content h3 {
+    margin-bottom: 0.5rem;
+    font-size: 1.3rem;
+    color: #242943;
+    font-weight: bold;
+  }
+
+  .date {
+    display: block;
+    font-size: 0.85rem;
+    font-weight: 600;
+    color: #6fc3df;
+    margin-bottom: 0.3rem;
+  }
+
+  .job-title-card {
+    font-style: italic;
+    font-weight: 600;
+    color: #242943;
+    margin: 0.5rem 0;
+    font-size: 1rem;
+  }
+
+  .job-description-card {
+    color: #555;
+    font-size: 0.9rem;
+    line-height: 1.4;
+    flex-grow: 1;
+    margin-bottom: 1rem;
+  }
+
+  /* Expand button styling */
+  .expand-button {
+    background: none;
+    border: 2px solid #6fc3df;
+    border-radius: 50%;
+    width: 40px;
+    height: 40px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    color: #6fc3df;
+    flex-shrink: 0;
+  }
+
+  .expand-button:hover {
+    background-color: #6fc3df;
+    color: white;
+    transform: scale(1.1);
+  }
+
+  .plus-icon {
+    transition: transform 0.3s ease;
+  }
+
+  /* Rotate plus icon to X when expanded */
+  .career-card.expanded .plus-icon {
+    transform: rotate(45deg);
+  }
+
+  /* Expandable content */
+  .expandable-content {
+    max-height: 0;
+    overflow: hidden;
+    transition: max-height 0.4s ease-out, opacity 0.3s ease-out;
+    opacity: 0;
+  }
+
+  .career-card.expanded .expandable-content {
+    max-height: 1000px;
+    opacity: 1;
+    transition: max-height 0.4s ease-in, opacity 0.3s ease-in;
+  }
+
+  .expanded-details {
+    padding-top: 1rem;
+    border-top: 2px solid rgba(111, 195, 223, 0.3);
+    margin-top: 1rem;
+  }
+
+  .expanded-details h4 {
+    color: #242943;
+    font-size: 1.1rem;
+    margin-bottom: 0.8rem;
+    position: relative;
+    padding-bottom: 0.3rem;
+  }
+
+  .expanded-details h4::after {
+    content: "";
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 30px;
+    height: 2px;
+    background-color: #6fc3df;
+  }
+
+  .card-achievements {
+    margin: 1rem 0;
+    padding-left: 0;
+  }
+
+  .card-achievements li {
+    margin-bottom: 0.6rem;
+    position: relative;
+    padding-left: 1.2rem;
+    font-size: 0.9rem;
+    line-height: 1.4;
+    color: #555;
+  }
+
+  .card-achievements li::before {
+    content: "";
+    position: absolute;
+    left: 0;
+    top: 0.4rem;
+    width: 6px;
+    height: 6px;
+    background-color: #6fc3df;
+    border-radius: 50%;
+  }
+
+  .card-technologies {
+    margin-top: 1.5rem;
   }
 
   .timeline-scroll-container {
-    width: 65%; /* Adjusted to fill the space */
+    width: 40%; /* Adjusted to fill the space */
     height: 100%;
     overflow-y: auto; /* This enables the vertical scrolling */
     position: relative;
@@ -668,6 +901,10 @@ const careerHistory = [
       height: 30vh;
       order: 1;
     }
+
+    .career-grid {
+      grid-template-columns: 1fr;
+    }
   }
 
   @media screen and (max-width: 736px) {
@@ -691,6 +928,25 @@ const careerHistory = [
 
     .next-section {
       bottom: 2rem;
+    }
+
+    .experience-content {
+      padding: 1.5rem;
+    }
+
+    .career-grid {
+      grid-template-columns: 1fr;
+      gap: 1rem;
+    }
+
+    .card-header {
+      flex-direction: column;
+      align-items: flex-start;
+    }
+
+    .expand-button {
+      align-self: flex-end;
+      margin-top: 1rem;
     }
   }
 
@@ -739,13 +995,13 @@ const careerHistory = [
     background-color: #6fc3df;
   }
 
-  .tech-tags {
+  .skills-section .tech-tags {
     display: flex;
     flex-wrap: wrap;
     gap: 0.8rem;
   }
 
-  .tech-tag {
+  .skills-section .tech-tag {
     display: inline-block;
     background-color: rgba(155, 241, 255, 0.2);
     color: #242943;
@@ -847,6 +1103,58 @@ const careerHistory = [
   // Observe each career section
   sections.forEach(section => {
     observer.observe(section);
+  });
+
+  // Handle card expansion functionality
+  const expandButtons = document.querySelectorAll('.expand-button');
+  const careerCards = document.querySelectorAll('.career-card');
+
+  expandButtons.forEach((button, index) => {
+    button.addEventListener('click', function(e) {
+      e.preventDefault();
+      e.stopPropagation();
+
+      const card = this.closest('.career-card');
+      const isCurrentlyExpanded = card.classList.contains('expanded');
+
+      // Close all other expanded cards first
+      careerCards.forEach(otherCard => {
+        if (otherCard !== card) {
+          otherCard.classList.remove('expanded');
+        }
+      });
+
+      // Toggle the current card
+      if (isCurrentlyExpanded) {
+        card.classList.remove('expanded');
+      } else {
+        card.classList.add('expanded');
+
+        // Smooth scroll to the expanded card after a brief delay to allow animation
+        setTimeout(() => {
+          card.scrollIntoView({
+            behavior: 'smooth',
+            block: 'nearest'
+          });
+        }, 200);
+      }
+    });
+  });
+
+  // Close expanded cards when clicking outside
+  document.addEventListener('click', function(e) {
+    if (!e.target.closest('.career-card')) {
+      careerCards.forEach(card => {
+        card.classList.remove('expanded');
+      });
+    }
+  });
+
+  // Prevent card expansion when clicking inside the card content
+  careerCards.forEach(card => {
+    card.addEventListener('click', function(e) {
+      e.stopPropagation();
+    });
   });
 });
 </script>
