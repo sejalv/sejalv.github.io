@@ -5,7 +5,7 @@ import MainLayout from '../layouts/MainLayout.astro';
 const siteConfig = {
   title: "Sejal Vaidya",
   bannerTitle: "Sejal Vaidya",
-  bannerDescription: "Tech Professional & Writer",
+  bannerDescription: "Data Professional & Writer",
 };
 
 const sections = [
@@ -18,18 +18,18 @@ const sections = [
     color: "style4"
   },
   {
-    id: "blog",
-    title: "Blog",
-    description: "Data Landscape | Berlin | Personal Essays",
+    id: "writing",
+    title: "The Writing Desk",
+    description: "Personal Essays | Short Fiction | Humor",
     image: "/assets/images/blog.jpg",
-    url: "/blog",
+    url: "/writing",
     color: "style3"
   }
 ];
 
 const aboutSection = {
   title: "About Me",
-  description: "Hi, I’m Sejal — a seasoned tech professional focused on platform strategy for Data and ML, and a writer with a soft spot for comedy and culture. I live in Berlin, Germany.",
+  description: "Hi, I’m Sejal — a seasoned tech professional focused on platform strategy for Data and ML, and a writer with a soft spot for humor and culture. I live in Berlin, Germany.",
   backgroundImage: "/assets/images/berlin-fshain.jpg"
 };
 ---
@@ -61,7 +61,7 @@ const aboutSection = {
   <!-- About Section
   <ul class="actions text-center">
             <li><a href="/about" class="button next">More</a></li>
-        </ul>
+  </ul>
   -->
   <section id="two" class="about-section" style={`background-image: url('${aboutSection.backgroundImage}');`}>
     <div class="inner">

@@ -1,5 +1,5 @@
 ---
-// pages/blog.astro
+// pages/personal.astro
 import MainLayout from '../layouts/MainLayout.astro';
 
 // Book posts data
@@ -43,15 +43,18 @@ const posts = [
 ];
 ---
 
-<MainLayout title="Blog | Sejal Vaidya" showBanner={false}>
+<MainLayout title="Writing | Sejal Vaidya" showBanner={false}>
   <div id="main">
     <section id="one" class="fixed-header">
       <div class="inner">
         <header class="major">
-          <h1>Blog</h1>
+          <h1>The Writing Desk</h1>
         </header>
         <p>
-          This section brings together my work in tech and creative side. You’ll find my thoughts on data leadership and platform strategy, alongside pieces on intersectional feminism, satire, and life in Berlin. More updates coming soon.
+          Notes and essays from life in Berlin, with reflections on intersectional feminism.
+          <br/>
+          I lean into humor, satire, and storytelling through creative non-fiction, short stories, and comedy writing.
+          <i> More updates coming soon. </i>
         </p>
       </div>
     </section>
@@ -173,7 +176,7 @@ const posts = [
         top: 0;
         left: 0;
         width: 100%;
-        height: 58.7%;
+        height: 59.0%;
         background-image: url('/assets/images/wm-bike.jpeg');
         background-size: cover;
         background-position: center;
