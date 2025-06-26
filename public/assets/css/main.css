@@ -3788,7 +3788,7 @@ input, select, textarea {
 		-webkit-transition: -webkit-transform 0.35s ease, opacity 0.35s ease, visibility 0.35s;
 		-ms-transition: -ms-transform 0.35s ease, opacity 0.35s ease, visibility 0.35s;
 		transition: transform 0.35s ease, opacity 0.35s ease, visibility 0.35s;
-		-moz-align-items: center;
+		-moz-align-items: translateX(100%);
 		-webkit-align-items: center;
 		-ms-align-items: center;
 		align-items: center;
@@ -3804,15 +3804,17 @@ input, select, textarea {
 		background: rgba(36, 41, 67, 0.9);
 		box-shadow: none;
 		height: 100%;
-		left: 0;
+		right: 0;
+		top: 0;
 		opacity: 0;
 		overflow: hidden;
 		padding: 3em 2em;
 		position: fixed;
 		top: 0;
 		visibility: hidden;
-		width: 100%;
+		width: 300px;
 		z-index: 10002;
+		display: block;
 	}
 
 		#menu .inner {
@@ -3933,11 +3935,11 @@ input, select, textarea {
 	}
 
 	body.is-menu-visible #wrapper {
-		-moz-filter: blur(0.5em);
-		-webkit-filter: blur(0.5em);
-		-ms-filter: blur(0.5em);
-		filter: blur(0.5em);
-	}
+        -moz-filter: none; /* Remove blur completely */
+        -webkit-filter: none;
+        -ms-filter: none;
+        filter: none;
+    }
 
 	body.is-menu-visible #menu {
 		pointer-events: auto;
