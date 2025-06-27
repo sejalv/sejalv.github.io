@@ -25,5 +25,3 @@ books:
 ---
 
 # My Bookshelf
-
-This file contains the data for all books featured on my website. The frontmatter YAML above is used by Astro to generate the book listings dynamically.
