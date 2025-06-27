@@ -3,6 +3,7 @@
 export interface Props {
   title: string;
   description?: string;
+  bannerImage?: string;
   bannerTitle?: string;
   bannerDescription?: string;
   showBanner?: boolean;
@@ -11,8 +12,10 @@ export interface Props {
 const {
   title,
   description,
+  bannerImage,
   bannerTitle,
   bannerDescription,
+  bannerDescSubtext,
   showBanner = true
 } = Astro.props;
 ---
@@ -54,7 +57,7 @@ const {
       </nav>
 
       {showBanner && (
-        <section id="banner" class="major" style="background-image: url('/assets/images/beach.jpg');">
+        <section id="banner" class="major" style={`background-image: url(${bannerImage})`}>
           <div class="inner">
             <header class="major">
               <h1>{bannerTitle}</h1>
@@ -62,8 +65,11 @@ const {
             <div class="content">
               <p>{bannerDescription}</p>
             </div>
+            <br/>
+            <p class="description-sub-text">
+              <slot name="description-sub-text" />
+            </p>
           </div>
-          <a href="#one" class="more scrolly"></a>
         </section>
       )}
 
@@ -240,6 +246,13 @@ const {
         margin-top: -2rem;
       }
 
+      #message {
+        resize: none !important;
+        height: 80px !important; /* Set fixed height */
+        min-height: 80px !important;
+        max-height: 80px !important;
+      }
+
       /* Alert message styling */
       .alert {
         padding: 1rem 1.5rem;
@@ -264,7 +277,9 @@ const {
         opacity: 0.6;
         pointer-events: none;
       }
-
+      .description-sub-text {
+          white-space: pre-line; /* This preserves \n as line breaks */
+      }
     </style>
   </body>
 </html>
