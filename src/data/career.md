@@ -1,14 +1,11 @@
 ---
-title: "Professional Experience"
-description: "14+ years of Data & Analytics Experience"
-lastUpdated: 2024-06-22
-positions:
+careerHistory:
   - id: "company-7"
     company: "Consulting"
     period: "2024 - Present"
     location: "Berlin, Germany"
     title: "Data Lead"
-    description: "Consulting growing startups on modern data architecture and strategic initiatives."
+    description: "Consulting growth-stage startups on modern data architecture and strategic initiatives."
     achievements:
       - "Built an AWS-based data infrastructure with Iceberg for modern lakehouse architecture and self-service analytics"
       - "Advised on data strategy and roadmap for growth optimization, feature adoption & customer intelligence"
@@ -31,7 +28,7 @@ positions:
     period: "2020 - 2022"
     location: "Munich, Germany"
     title: "Data Platform Lead"
-    description: "Led development of Health data platform for patient journey research from scratch, and to provide clinical insights to pharmaceutical clients."
+    description: "Led the development of a regulated Healthcare data platform for patient journey research from ground up."
     achievements:
       - "Built NLP pipeline for customer feedback analysis"
       - "Established data governance framework"
@@ -79,7 +76,7 @@ positions:
     period: "2009 - 2013"
     location: "Mumbai, India"
     title: "Data Analyst"
-    description: "Data management & quality analysis for navigation maps in automotives."
+    description: "Data management & Quality analysis for navigation maps in automotives."
     achievements:
       - "Reduced process inefficiencies by 20%"
       - "Implemented tracking system for KPIs"
@@ -87,8 +84,6 @@ positions:
     technologies: ["Excel", "SQL", "JIRA", "Confluence"]
 ---
 
-## Professional Journey
+# Career History
 
-With 14+ years of Tech industry experience building scalable data platforms in Digital Health, FinTech and e-Commerce. 
-Proven track record in self-serving, reliable, and high-impact data systems; embedding platform thinking within cross-functional teams, and shaping long-term data strategies aligned with business goals. 
-Currently focused on Data Architecture and Platform Leadership, and designing modular infrastructure to enable analytics, ML, and product growth.
+This file contains the career history data used by the CareerSection component.

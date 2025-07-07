@@ -2,33 +2,47 @@
 // pages/writing.astro
 import MainLayout from '../layouts/MainLayout.astro';
 import BookshelfPanel from '../components/BookshelfPanel.astro';
+import SectionNavigation from '../components/SectionNavigation.astro';
+
 ---
 
 <MainLayout
     title="Writing"
     bannerImage='/assets/images/wm-bike.jpeg'
     bannerTitle="Notes & Essays"
+    bannerDescription="Personal Essays | Short Stories | Humor"
     showBanner={true}>
     <Fragment slot="description-sub-text">
-        I write creative non-fiction, satire, and short stories about life in Berlin and Mumbai, while reflecting on intersectional feminism and culture.
+        I write creative non-fiction, satire, and short fiction about life in Berlin and Mumbai, while reflecting on intersectional feminism and culture.
         Sometimes, I explore comedy through sketch and screen writing.
     </Fragment>
-    <div id="main">
-        <div class="sub-inner">
-          <BookshelfPanel
-              title="Bookshelf"
-              minBooks={1}
-              maxBooks={2}
-              showTitle={true}
-          />
-        </div>
 
-        <!-- Future sections for actual writing content -->
-        <!-- <section id="essays" class="inner">
-          <header class="major">
-            <h2>Recent Essays</h2>
-          </header>
-          Add your essays/writing content here
-        </section> -->
+    <div id="main">
+      <SectionNavigation
+      backgroundImage='/assets/images/wm-bike.jpeg'
+      sections={[
+          { id: 'bookshelf', label: 'Bookshelf' },
+          { id: 'blog', label: 'Blog' }
+        ]}>
+
+          <span id="bookshelf" class="anchor-target"></span>
+          <section class="sub-inner">
+            <BookshelfPanel
+              title="Bookshelf"
+              minBooks={4}
+              maxBooks={6}
+              showTitle={true}
+            />
+          </section>
+
+          <span id="blog" class="anchor-target"></span>
+          <section class="sub-inner" style="background: rgba(255, 255, 255, 0.02); border: 1px solid rgba(255, 255, 255, 0.1); border-radius: 8px; padding: 2.5em 2em;">
+            <header class="major">
+              <h2>Blog</h2>
+            </header>
+            <p>Coming soon...</p>
+          </section>
+
+        </SectionNavigation>
   </div>
 </MainLayout>
