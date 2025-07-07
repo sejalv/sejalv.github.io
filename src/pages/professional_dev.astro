@@ -1,0 +1,46 @@
+---
+// pages/professional.astro
+import MainLayout from '../layouts/MainLayout.astro';
+import BookshelfPanel from '../components/BookshelfPanel.astro';
+import CareerSection from '../components/CareerSection.astro';
+---
+
+<MainLayout
+    title="Professional"
+    bannerImage='/assets/images/night-skyline.jpg'
+    bannerTitle="Professional"
+    showBanner={true}>
+    <Fragment slot="description-sub-text">
+        With 14+ years of Tech industry experience building scalable data platforms in Digital Health, FinTech and e-Commerce.
+        Proven track record in reliable and high-impact data systems, embedding platform thinking within cross-functional teams, and shaping data strategies aligned with long-term business goals.
+
+        Currently focused on Data Architecture and Platform Leadership, and designing modular infrastructure to enable analytics, ML, and product growth.
+    </Fragment>
+
+  <div id="main">
+    <!-- Career Section Component -->
+    <div class="inner">
+      <CareerSection
+        title="Experience"
+        gridColumns={4}
+        showTitle={true}
+      />
+    </div>
+
+    <div class="sub-inner">
+      <BookshelfPanel
+        title="Bookshelf"
+        maxBooks={1}
+        showTitle={true}
+      />
+    </div>
+
+    <!-- Future sections for actual writing content -->
+        <!-- <section id="essays" class="inner">
+          <header class="major">
+            <h2>Blog</h2>
+          </header>
+          Add your essays/writing content here
+        </section> -->
+  </div>
+</MainLayout>
