@@ -1,5 +1,7 @@
 ---
 // components/CareerSection.astro
+import Modal from './Modal.astro';
+
 const careerData = await import('../data/career.md');
 const careerHistory = careerData.frontmatter.careerHistory;
 
@@ -29,27 +31,55 @@ const displayedJobs = maxJobs ? careerHistory.slice(0, maxJobs) : careerHistory;
   )}
 
   <div class="career-grid" style={`grid-template-columns: repeat(${gridColumns}, 1fr);`}>
-    {displayedJobs.map((job) => (
-      <article class="career-card">
-        <div class="career-content">
-          <h3>{job.company}</h3>
-          <span class="date">{job.period}</span>
-          <span class="date">{job.location}</span>
-          <p class="job-title">{job.title}</p>
-          <p>{job.description}</p>
-        </div>
-      </article>
+    {displayedJobs.map((job, idx) => (
+      <>
+        <article class="career-card" style="cursor: pointer;" data-modal-target={`modal-career-${idx}`}> 
+          <div class="career-content">
+            <h3>{job.company}</h3>
+            <span class="date">{job.period}</span>
+            <span class="date">{job.location}</span>
+            <p class="job-title">{job.title}</p>
+            <p>{job.description}</p>
+          </div>
+        </article>
+        {/*
+        <Modal id={`modal-career-${idx}`} title={job.company} type="career">
+          <div class="career-modal-content">
+            <h4>{job.title}</h4>
+            <p><strong>Period:</strong> {job.period}</p>
+            <p><strong>Location:</strong> {job.location}</p>
+            <p>{job.description}</p>
+            {job.highlights && (
+              <div class="highlights">
+                <h5>Highlights</h5>
+                <ul>
+                  {job.highlights.map((hl) => (
+                    <li>{hl}</li>
+                  ))}
+                </ul>
+              </div>
+            )}
+            {job.technologies && (
+              <div class="technologies">
+                <h5>Technologies</h5>
+                <div class="tech-tags">
+                  {job.technologies.map((tech) => (
+                    <span class="tech-tag">{tech}</span>
+                  ))}
+                </div>
+              </div>
+            )}
+          </div>
+        </Modal>
+        */}
+      </>
     ))}
   </div>
 </section>
 
 <style>
   .career-section {
-   background: rgba(255, 255, 255, 0.02);
-   border-radius: 8px;
-   border: 1px solid rgba(255, 255, 255, 0.1);
-   margin: 2em 0;
-   padding: 2.5em 2em;
+   margin: 0em 0;
   }
 
   .career-grid {
@@ -59,15 +89,41 @@ const displayedJobs = maxJobs ? careerHistory.slice(0, maxJobs) : careerHistory;
   }
 
   .career-card {
-    background: rgba(0, 0, 0, 0.05);
+    background: rgba(0, 0, 0, 0.06);
     border-radius: 4px;
     overflow: hidden;
     transition: transform 0.3s ease, box-shadow 0.3s ease;
+    cursor: pointer;
   }
 
   .career-card:hover {
     transform: translateY(-5px);
     box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
+  }
+
+  .career-card:hover .card-overlay {
+    opacity: 1;
+  }
+
+  .card-overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: rgba(135, 197, 164, 0.9);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    opacity: 0;
+    transition: opacity 0.3s ease;
+  }
+
+  .view-details {
+    color: white;
+    font-weight: bold;
+    font-size: 1.1em;
+    text-shadow: 0 1px 2px rgba(0, 0, 0, 0.3);
   }
 
   .career-content {
@@ -99,22 +155,22 @@ const displayedJobs = maxJobs ? careerHistory.slice(0, maxJobs) : careerHistory;
     color: rgba(255, 255, 255, 0.8);
   }
 
-  .achievements {
+  .highlights {
     margin: 1em 0;
   }
 
-  .achievements h4 {
+  .highlights h4 {
     font-size: 0.9em;
     margin-bottom: 0.5em;
     color: rgba(255, 255, 255, 0.9);
   }
 
-  .achievements ul {
+  .highlights ul {
     list-style: none;
     padding-left: 0;
   }
 
-  .achievements li {
+  .highlights li {
     font-size: 0.8em;
     line-height: 1.3;
     margin-bottom: 0.3em;
@@ -123,7 +179,7 @@ const displayedJobs = maxJobs ? careerHistory.slice(0, maxJobs) : careerHistory;
     padding-left: 1em;
   }
 
-  .achievements li::before {
+  .highlights li::before {
     content: "•";
     color: #87c5a4;
     position: absolute;
@@ -155,22 +211,127 @@ const displayedJobs = maxJobs ? careerHistory.slice(0, maxJobs) : careerHistory;
     border: 1px solid rgba(135, 197, 164, 0.3);
   }
 
+  /* Modal Content Styles */
+  .career-modal-content {
+    color: #ffffff;
+  }
+
+  .modal-header-info {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 1.5rem;
+    padding-bottom: 1rem;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+  }
+
+  .modal-period {
+    font-weight: bold;
+    color: #87c5a4;
+  }
+
+  .modal-location {
+    color: rgba(255, 255, 255, 0.7);
+    font-size: 0.9em;
+  }
+
+  .modal-description {
+    margin-bottom: 2rem;
+  }
+
+  .modal-description p {
+    font-size: 1.1em;
+    line-height: 1.6;
+    color: rgba(255, 255, 255, 0.9);
+  }
+
+  .modal-highlights {
+    margin-bottom: 2rem;
+  }
+
+  .modal-highlights h4 {
+    color: #87c5a4;
+    margin-bottom: 1rem;
+    font-size: 1.1em;
+  }
+
+  .modal-highlights ul {
+    list-style: none;
+    padding: 0;
+  }
+
+  .modal-highlights li {
+    padding: 0.5rem 0;
+    padding-left: 1.5rem;
+    position: relative;
+    line-height: 1.5;
+    color: rgba(255, 255, 255, 0.8);
+  }
+
+  .modal-highlights li::before {
+    content: "▸";
+    position: absolute;
+    left: 0;
+    color: #87c5a4;
+    font-weight: bold;
+  }
+
+  .modal-technologies h4 {
+    color: #87c5a4;
+    margin-bottom: 1rem;
+    font-size: 1.1em;
+  }
+
+  .tech-tags {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.5rem;
+  }
+
+  .tech-tags .tech-tag {
+    background: rgba(135, 197, 164, 0.2);
+    color: #87c5a4;
+    padding: 0.4em 0.8em;
+    border-radius: 12px;
+    font-size: 0.8em;
+    font-weight: 500;
+  }
+
   /* Responsive design */
-  @media (max-width: 1200px) {
+  @media (max-width: 768px) {
     .career-grid {
-      grid-template-columns: repeat(3, 1fr) !important;
+      grid-template-columns: 1fr;
     }
-  }
 
-  @media (max-width: 900px) {
-    .career-grid {
-      grid-template-columns: repeat(2, 1fr) !important;
+    .career-header {
+      flex-direction: column;
+      align-items: flex-start;
     }
-  }
 
-  @media (max-width: 600px) {
-    .career-grid {
-      grid-template-columns: 1fr !important;
+    .period {
+      margin-top: 0.5em;
+    }
+
+    .modal-header-info {
+      flex-direction: column;
+      align-items: flex-start;
+      gap: 0.5rem;
     }
   }
 </style>
+
+<script>
+  document.addEventListener('DOMContentLoaded', function() {
+    document.querySelectorAll('.career-card').forEach(card => {
+      card.addEventListener('click', function(e) {
+        e.preventDefault();
+        const modalId = this.getAttribute('data-modal-target');
+        const modal = document.getElementById(modalId);
+        if (modal) {
+          modal.classList.add('active');
+          document.body.style.overflow = 'hidden';
+        }
+      });
+    });
+  });
+</script>

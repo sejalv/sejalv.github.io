@@ -29,7 +29,7 @@ import SectionNavigation from '../components/SectionNavigation.astro';
         ]}>
 
           <span id="experience" class="anchor-target"></span>
-          <section class="sub-inner">
+          <section class="section-container">
             <CareerSection
               title="Experience"
               gridColumns={4}
@@ -38,7 +38,7 @@ import SectionNavigation from '../components/SectionNavigation.astro';
           </section>
 
           <span id="bookshelf" class="anchor-target"></span>
-          <section class="sub-inner">
+          <section class="section-container">
             <BookshelfPanel
               title="Bookshelf"
               maxBooks={2}
@@ -47,12 +47,13 @@ import SectionNavigation from '../components/SectionNavigation.astro';
           </section>
 
           <span id="blog" class="anchor-target"></span>
-          <section class="sub-inner" style="background: rgba(255, 255, 255, 0.02); border: 1px solid rgba(255, 255, 255, 0.1); border-radius: 8px; padding: 2.5em 2em;">
+          <section class="section-container">
             <header class="major">
               <h2>Blog</h2>
             </header>
             <p>Coming soon...</p>
           </section>
+
         </SectionNavigation>
 
   </div>

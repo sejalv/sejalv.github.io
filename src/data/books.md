@@ -12,6 +12,17 @@ books:
     excerpt: "A critical account of Facebook's internal culture and decision-making practices, given by a former director of public policy at Facebook."
     image: "/assets/images/cp_sww.jpg"
   
+  - title: "Invisible Women"
+    subtext: "Exposing Data Bias in a World Designed for Men"
+    author: "Caroline Criado-Perez"
+    excerpt: "It cleverly dismantles the systemic inequity with data, and demonstrates how that has quietly impacted almost every aspect of daily life."
+    image: "/assets/images/invisible_women.jpg"
+    
+  - title: "Dream Count"
+    subtext: "A Novel"
+    author: "Chimamanda Ngozi Adichie"
+    image: "/assets/images/dc_cna.png"
+  
   - title: "Thinking, Fast and Slow"
     author: "Daniel Kahneman"
     excerpt: "On dual-system thinking, understanding cognitive biases in humans, and tools for improved decision-making."
@@ -23,16 +34,6 @@ books:
     excerpt: "Engaging storytelling that weaves together insights from history, science, and economics to reflect upon human nature, identity, and culture."
     image: "/assets/images/sapiens.jpeg"
     
-  - title: "Invisible Women"
-    subtext: "Exposing Data Bias in a World Designed for Men"
-    author: "Caroline Criado-Perez"
-    excerpt: "It cleverly dismantles the systemic inequity with data, and demonstrates how that has quietly impacted almost every aspect of daily life."
-    image: "/assets/images/invisible_women.jpg"
-    
-  - title: "Dream Count"
-    subtext: "A Novel"
-    author: "Chimamanda Ngozi Adichie"
-    image: "/assets/images/dc_cna.png"
 ---
 
 # My Bookshelf
