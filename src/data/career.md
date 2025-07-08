@@ -5,9 +5,9 @@ careerHistory:
     period: "2024 - Present"
     location: "Berlin, Germany"
     title: "Data Lead"
-    description: "Consulting growth-stage startups on modern data architecture and strategic initiatives."
-    achievements:
-      - "Built an AWS-based data infrastructure with Iceberg for modern lakehouse architecture and self-service analytics"
+    description: "Consulting growth-stage startups on modern data architecture and platform strategy."
+    highlights:
+      - "Built an AWS-based data infrastructure with Iceberg and modern lakehouse architecture, to enable self-service analytics"
       - "Advised on data strategy and roadmap for growth optimization, feature adoption & customer intelligence"
     technologies: ["AWS", "FiveTran", "Metabase", "SQL", "Mixpanel"]
   
@@ -17,7 +17,7 @@ careerHistory:
     location: "Berlin, Germany"
     title: "Staff ML Engineer"
     description: "Scaled experimentation platforms and A/B Testing frameworks to optimize pricing models."
-    achievements:
+    highlights:
       - "Conducted A/B testing for marketing campaigns"
       - "Supported product development with market analysis"
       - "Built scalable ETL processes handling 2TB+ daily"
@@ -29,7 +29,7 @@ careerHistory:
     location: "Munich, Germany"
     title: "Data Platform Lead"
     description: "Led the development of a regulated Healthcare data platform for patient journey research from ground up."
-    achievements:
+    highlights:
       - "Built NLP pipeline for customer feedback analysis"
       - "Established data governance framework"
       - "Designed executive KPI dashboard"
@@ -41,7 +41,7 @@ careerHistory:
     location: "Munich, Germany"
     title: "Senior Data Engineer"
     description: "Redesigned data platform for real-time analytics on fitness journeys of 39+ MM users."
-    achievements:
+    highlights:
       - "Spearheaded migration to cloud architecture"
       - "Implemented real-time data processing architecture"
       - "Created recommendation engine increasing user engagement by 15%"
@@ -53,7 +53,7 @@ careerHistory:
     location: "Mumbai, India"
     title: "Senior Software Engineer"
     description: "Developed data products for Fraud Analytics in Life & Health Insurance space."
-    achievements:
+    highlights:
       - "Maintained customer database"
       - "Developed ETL scripts for data integration"
       - "Identified $1.2M in cost-saving opportunities"
@@ -65,7 +65,7 @@ careerHistory:
     location: "Mumbai, India"
     title: "Business Intelligence Developer"
     description: "Data modeling & BI reporting for Credit Risk, Finance & Marketing Analytics groups."
-    achievements:
+    highlights:
       - "Created weekly performance reports"
       - "Supported marketing analytics initiatives"
       - "Streamlined reporting processes"
@@ -77,7 +77,7 @@ careerHistory:
     location: "Mumbai, India"
     title: "Data Analyst"
     description: "Data management & Quality analysis for navigation maps in automotives."
-    achievements:
+    highlights:
       - "Reduced process inefficiencies by 20%"
       - "Implemented tracking system for KPIs"
       - "Automated reporting systems saving 20 hours weekly"

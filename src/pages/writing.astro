@@ -9,8 +9,8 @@ import SectionNavigation from '../components/SectionNavigation.astro';
 <MainLayout
     title="Writing"
     bannerImage='/assets/images/wm-bike.jpeg'
-    bannerTitle="Notes & Essays"
-    bannerDescription="Personal Essays | Short Stories | Humor"
+    bannerTitle="Personal Notes"
+    bannerDescription="Short Stories | Essays | Humor"
     showBanner={true}>
     <Fragment slot="description-sub-text">
         I write creative non-fiction, satire, and short fiction about life in Berlin and Mumbai, while reflecting on intersectional feminism and culture.
@@ -26,17 +26,17 @@ import SectionNavigation from '../components/SectionNavigation.astro';
         ]}>
 
           <span id="bookshelf" class="anchor-target"></span>
-          <section class="sub-inner">
-            <BookshelfPanel
+          <section class="section-container">
+            <BookshelfPanel 
               title="Bookshelf"
-              minBooks={4}
-              maxBooks={6}
+              minBooks={2}
+              maxBooks={4}
               showTitle={true}
             />
           </section>
 
           <span id="blog" class="anchor-target"></span>
-          <section class="sub-inner" style="background: rgba(255, 255, 255, 0.02); border: 1px solid rgba(255, 255, 255, 0.1); border-radius: 8px; padding: 2.5em 2em;">
+          <section class="section-container">
             <header class="major">
               <h2>Blog</h2>
             </header>
