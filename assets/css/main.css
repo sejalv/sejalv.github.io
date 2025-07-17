@@ -3351,7 +3351,7 @@ input, select, textarea {
 		@media screen and (max-width: 480px) {
 
 			#header .logo span {
-				display: none;
+				display: inline;
 			}
 
 			#header nav a[href="#menu"] {
@@ -3710,6 +3710,12 @@ input, select, textarea {
 				padding: 3em 0 1em 0 ;
 			}
 
+		}
+
+		@media screen and (max-width: 480px) {
+			#contact {
+				padding-bottom: 4em !important; /* Even more for very small screens */
+			}
 		}
 
 /* Footer */
