@@ -16,7 +16,7 @@ careerHistory:
     period: "2022 - 2023"
     location: "Berlin, Germany"
     title: "Staff ML Engineer"
-    description: "Scaled experimentation platforms and A/B Testing frameworks to optimize pricing models."
+    description: "Scaled experimentation platforms and A/B Testing infrastructure to optimize pricing models."
     highlights:
       - "Conducted A/B testing for marketing campaigns"
       - "Supported product development with market analysis"
@@ -76,7 +76,7 @@ careerHistory:
     period: "2009 - 2013"
     location: "Mumbai, India"
     title: "Data Analyst"
-    description: "Data management & Quality analysis for navigation maps in automotives."
+    description: "Data management & quality analysis for navigation maps in automotives."
     highlights:
       - "Reduced process inefficiencies by 20%"
       - "Implemented tracking system for KPIs"
