@@ -24,7 +24,7 @@ const { sections, backgroundImage } = Astro.props;
     top: 4rem;
     align-self: flex-start;
     height: max-content;
-    min-height: 100vh;
+    height: 100vh;
     padding: 4rem 2rem 2rem;
     background-color: #2a2f4a;
   }
@@ -120,14 +120,15 @@ const { sections, backgroundImage } = Astro.props;
       width: 100%;
       border-right: none;
       border-bottom: 1px solid rgba(255, 255, 255, 0.1);
-      position: relative;
+      position: sticky;
       top: 0;
-      padding: 1rem;
-      background-color: transparent;
+      padding-top: 0.3rem;
+      height: 6rem;
+      z-index: 1000;
     }
 
     .split-right {
-      padding-left: 0;
+      padding-left: 0.5;
       scroll-padding-top: 6rem;
     }
 
@@ -139,6 +140,18 @@ const { sections, backgroundImage } = Astro.props;
     .split-right section::before {
       height: 6rem; /* Adjusted for mobile */
       margin-top: -6rem;
+    }
+
+    .split-left nav ul {
+      display: flex;
+      flex-direction: row;
+      justify-content: center;
+      gap: 1.5em;
+      margin: 0;
+      padding: 1.5em 0;
+    }
+    .split-left nav ul li {
+      margin-bottom: 0;
     }
   }
 </style>
