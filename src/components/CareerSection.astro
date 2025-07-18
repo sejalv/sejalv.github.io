@@ -30,7 +30,7 @@ const displayedJobs = maxJobs ? careerHistory.slice(0, maxJobs) : careerHistory;
     </header>
   )}
 
-  <div class="career-grid" style={`grid-template-columns: repeat(${gridColumns}, 1fr);`}>
+  <div class="career-grid" style={`--career-columns: ${gridColumns};`}>
     {displayedJobs.map((job, idx) => (
       <>
         <article class="career-card" style="cursor: pointer;" data-modal-target={`modal-career-${idx}`}> 
@@ -86,6 +86,7 @@ const displayedJobs = maxJobs ? careerHistory.slice(0, maxJobs) : careerHistory;
     display: grid;
     gap: 2em;
     margin: 2em 0;
+    grid-template-columns: repeat(var(--career-columns, 4), 1fr);
   }
 
   .career-card {
@@ -301,6 +302,10 @@ const displayedJobs = maxJobs ? careerHistory.slice(0, maxJobs) : careerHistory;
   @media (max-width: 768px) {
     .career-grid {
       grid-template-columns: 1fr;
+    }
+
+    .career-card {
+      flex-direction: column;
     }
 
     .career-header {
