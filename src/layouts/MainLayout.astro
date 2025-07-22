@@ -40,10 +40,11 @@ const {
         <nav>
           <a href="#menu">Menu</a>
         </nav>
+        
       </header>
 
       <!-- Menu
-                <li><a href="/about">About</a></li>
+                <li><a href="https://substack.com/@sejalv" class="icon solid alt fa-bookmark"><span class="label">Substack</span></a></li>
       -->
       <nav id="menu">
         <ul class="links">
@@ -58,7 +59,6 @@ const {
         <ul class="icons">
           <li><a href="https://www.linkedin.com/in/vaidyasejal/" class="icon brands alt fa-linkedin-in"><span class="label">LinkedIn</span></a></li>
           <li><a href="https://github.com/sejalv" class="icon brands alt fa-github"><span class="label">GitHub</span></a></li>
-          <li><a href="https://substack.com/@sejalv" class="icon solid alt fa-bookmark"><span class="label">Substack</span></a></li>
         </ul>
       </nav>
 
@@ -83,7 +83,9 @@ const {
         <slot />
       </div>
 
-      <!-- Contact Section -->
+      <!-- Contact Section 
+                      <li><a href="https://substack.com/@sejalv" class="icon solid alt fa-bookmark"><span class="label">Substack</span></a></li>
+      -->
       <section id="contact">
         <div class="inner text-center contact-header">
           <section class="contact-title">
@@ -95,7 +97,6 @@ const {
             <ul class="icons contact-icons">
               <li><a href="https://www.linkedin.com/in/vaidyasejal/" class="icon brands alt fa-linkedin-in"><span class="label">LinkedIn</span></a></li>
               <li><a href="https://github.com/sejalv" class="icon brands alt fa-github"><span class="label">GitHub</span></a></li>
-              <li><a href="https://substack.com/@sejalv" class="icon solid alt fa-bookmark"><span class="label">Substack</span></a></li>
             </ul>
           </section>
         </div>
@@ -141,7 +142,8 @@ const {
         <div class="inner">
           <ul class="copyright">
             <li>&copy; Sejal Vaidya</li>
-            <li>Design: <a href="https://html5up.net/forty">HTML5 UP</a> and Astro</li>
+            <li>Design: HTML5 UP and Astro</li>
+            <li> Demo Images: Unsplash</li>
           </ul>
         </div>
       </footer>
@@ -236,6 +238,7 @@ const {
       .contact-icons {
         justify-content: flex-end;
         display: flex;
+        margin-right: -1.5rem;
       }
 
       .contact-form {

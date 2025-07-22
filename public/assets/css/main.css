@@ -3351,7 +3351,7 @@ input, select, textarea {
 		@media screen and (max-width: 480px) {
 
 			#header .logo span {
-				display: inline;
+				display: none;
 			}
 
 			#header nav a[href="#menu"] {
