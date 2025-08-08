@@ -36,7 +36,7 @@ const aboutSection = {
 
 <MainLayout
   title={siteConfig.title}
-  bannerImage="/assets/images/beach.jpg"
+  bannerImage="/assets/images/business-dashboard.jpg"
   bannerTitle={siteConfig.bannerTitle}
   bannerDescription={siteConfig.bannerDescription}
   showBanner={true}
@@ -81,7 +81,7 @@ const aboutSection = {
 <style>
   /* Banner sizing */
   :global(#banner) {
-    height: 66vh !important;
+    height: 55.5vh !important;
     min-height: 200px !important;
     max-height: 66vh !important;
   }
@@ -98,13 +98,14 @@ const aboutSection = {
   .tiles {
     display: grid;
     grid-template-columns: 1fr 1fr;
-    height: 60vh;
+    height: 51vh;
     background-image: url("/assets/images/profile_picture.jpg") !important;
     position: relative;
   }
 
   .tiles article {
-    height: 100%;
+    height: auto; /* Let content dictate height */
+    min-height: 200px;
     width: 100%;
   }
 
@@ -120,6 +121,10 @@ const aboutSection = {
   #two {
     margin-top: 0;
     position: relative;
+  }
+
+  .about-section {
+    height: 51vh !important;
   }
 
   /* Tablet responsiveness */
