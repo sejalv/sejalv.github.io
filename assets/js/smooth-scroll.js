@@ -37,7 +37,7 @@ document.addEventListener('DOMContentLoaded', function() {
       if (!targetSection) return;
 
       // Calculate the target's position minus some offset
-      const targetPosition = targetSection.offsetTop - 450;
+      const targetPosition = targetSection.offsetTop - 250;
 
       // If we've scrolled past the target section, hide the button
       if (scrollPosition >= targetPosition) {
