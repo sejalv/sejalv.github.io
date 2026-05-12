@@ -198,26 +198,17 @@ const {
       /* Tablet responsiveness for About section */
       @media screen and (max-width: 980px) {
         .about-section {
-          height: 30vh !important;
-        }
-
-        .about-section .inner {
-          max-width: 80%;
-          padding: 1rem 1rem;
+          min-height: 40vh;
+          height: auto;
         }
       }
 
       /* Mobile responsiveness for About section */
       @media screen and (max-width: 736px) {
         .about-section {
-          height: auto !important;
-          min-height: 60vh !important;
+          min-height: unset;
+          height: auto;
           padding: 0;
-        }
-
-        .about-section .inner {
-          max-width: 90%;
-          padding: 3rem 1.5rem;
         }
       }
 

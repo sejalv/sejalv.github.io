@@ -129,13 +129,18 @@ const { sections, backgroundImage } = Astro.props;
     }
 
     .split-right {
-      padding-left: 0.5;
+      padding-left: 0.5rem;
+      padding-right: 0.5rem;
       scroll-padding-top: 6rem;
     }
 
     .split-right section {
-      padding-top: 4rem; /* Reduced for mobile */
+      padding-top: 4rem;
       margin-top: -2rem;
+    }
+
+    .section-container {
+      padding: 1.5em 1em;
     }
 
     .split-right section::before {

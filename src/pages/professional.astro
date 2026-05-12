@@ -104,6 +104,16 @@ const sections = [
     font-size: 1.1rem !important;
   }
 
+  @media screen and (max-width: 736px) {
+    :global(section#banner) {
+      max-height: none !important;
+    }
+
+    :global(section#banner .description-sub-text) {
+      font-size: 0.95rem !important;
+    }
+  }
+
   :global(.career-card.project-card) {
     cursor: pointer;
   }
