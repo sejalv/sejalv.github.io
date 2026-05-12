@@ -27,7 +27,7 @@ const featuredBooks = books.slice(minBooks, maxBooks);
       <h2>{title}</h2>
     </header>
   )}
-  <p>Currently reading...</p>
+  <p>Latest reads...</p>
 
   <div class="showcase-grid">
     {featuredBooks.map((book) => (
@@ -65,7 +65,7 @@ const featuredBooks = books.slice(minBooks, maxBooks);
         </div>
       </Modal>
     ))}
-    <a href="/bookshelf" class="view-all-link">View full bookshelf →</a>
+    <a href="/bookshelf" class="view-all-link">View all books →</a>
   </div>
 </section>
 

@@ -1,60 +1,120 @@
 ---
 // pages/professional.astro
 import MainLayout from '../layouts/MainLayout.astro';
-import BookshelfPanel from '../components/BookshelfPanel.astro';
-import CareerSection from '../components/CareerSection.astro';
 import SectionNavigation from '../components/SectionNavigation.astro';
+import CareerSection from '../components/CareerSection.astro';
+
+const careerData = await import('../data/career.md');
+const consultingData = await import('../data/consulting.md');
+const projectData = await import('../data/projects.md');
+
+// Define sections with their data
+const sections = [
+  {
+    id: 'consulting',
+    label: 'Consulting',
+    title: 'Consulting',
+    gridColumns: 3,
+    items: consultingData.frontmatter.consultingHistory
+  },
+  {
+    id: 'experience',
+    label: 'Experience',
+    title: 'Experience',
+    gridColumns: 3,
+    items: careerData.frontmatter.careerHistory
+  },
+  {
+    id: 'projects',
+    label: 'Projects',
+    title: 'Projects',
+    gridColumns: 3,
+    items: projectData.frontmatter.projectHistory
+  }
+];
 ---
 
 <MainLayout
     title="Professional"
-    bannerImage='/assets/images/workdesk-whiteboard.webp'
+    bannerImage='/assets/images/Office_Brainstorming_Session.jpg'
     bannerTitle="Professional"
     bannerDescription="Data & ML Platforms | Tech Leadership | Data Strategy"
     showBanner={true}>
     <Fragment slot="description-sub-text">
-        With 14+ years of Tech industry experience building scalable data platforms in Digital Health, FinTech and e-Commerce.
-        Proven track record in reliable and high-impact data systems, embedding platform thinking within cross-functional teams, and shaping data strategy aligned with long-term business goals.
-
-        Currently focused on Data Architecture & Platform Leadership, leveraging modular infrastructure design to empower analytics, ML, and product growth.
+        Over 15 years, I have led initiatives in scaling ML platforms to drive pricing experimentation, empower healthcare research, and improve product adoption by millions of users.
+        
+        I work with growth-stage startups across e-Commerce, Digital Health, and Energy, on Production ML systems, user-centric data products, and cross-team enablement.
     </Fragment>
 
   <div id="main">
       <SectionNavigation
-      backgroundImage='/assets/images/workdesk-whiteboard.webp'
-      sections={[
-          { id: 'experience', label: 'Experience' },
-          { id: 'bookshelf', label: 'Bookshelf' },
-          { id: 'blog', label: 'Blog' }
-        ]}>
+      backgroundImage='/assets/images/business-dashboard.jpg'
+      sections={sections.map(s => ({ id: s.id, label: s.label }))}>
 
-          <span id="experience" class="anchor-target"></span>
-          <section class="section-container">
-            <CareerSection
-              title="Experience"
-              gridColumns={4}
-              showTitle={true}
-            />
-          </section>
-
-          <span id="bookshelf" class="anchor-target"></span>
-          <section class="section-container">
-            <BookshelfPanel
-              title="Bookshelf"
-              maxBooks={2}
-              showTitle={true}
-            />
-          </section>
-
-          <span id="blog" class="anchor-target"></span>
-          <section class="section-container">
-            <header class="major">
-              <h2>Blog</h2>
-            </header>
-            <p>Coming soon on <a href="https://dataunstacked.substack.com/">Substack</a></p>
-          </section>
+          {sections.map((section) => (
+            <>
+              <span id={section.id} class="anchor-target"></span>
+              <section class="section-container">
+                <CareerSection id={section.id} title={section.title} gridColumns={section.gridColumns}>
+                  {section.items.map((item, idx) => (
+                    <article class={`career-card${section.id === 'projects' ? ' project-card' : ''}`} data-card-index={`${section.id}-${idx}`} data-controls={`${section.id}-extra-${idx}`} data-href={section.id === 'projects' && item.links?.[0]?.trim() ? (item.links[0].startsWith('http') ? item.links[0] : `https://${item.links[0]}`) : undefined}>
+                      <div class="career-content">
+                        <h3>{item.company}</h3>
+                        {item.period && <span class="date">{item.period}</span>}
+                        {item.location && <span class="date">{item.location}</span>}
+                        {item.title && <p class="job-title">{item.title}</p>}
+                        {item.description && <p class="description">{item.description}</p>}
+                      </div>
+                      {(item.links) && (
+                        <div id={`${section.id}-extra-${idx}`} hidden>
+                          <div class="about-actions">
+                            <ul class="actions">
+                              {item.links.map((hl) => (
+                                  <li>
+                                  <a href={hl} target="_blank" rel="noopener noreferrer" class="button icon fa-bookmark">{item.header}</a>
+                                  </li>
+                                ))}
+                            </ul>
+                          </div>
+                        </div>
+                      )}
+                    </article>
+                  ))}
+                </CareerSection>
+              </section>
+            </>
+          ))}
 
         </SectionNavigation>
-
   </div>
 </MainLayout>
+
+<style>
+  :global(section#banner.major h1) {
+    font-size: 1.8em !important;
+  }
+
+  :global(section#banner) {
+    padding: 4.5em 0 0.5em 0 !important;
+    min-height: 14em !important;
+    max-height: 24em !important;
+  }
+
+  :global(section#banner .description-sub-text) {
+    font-size: 1.1rem !important;
+  }
+
+  :global(.career-card.project-card) {
+    cursor: pointer;
+  }
+</style>
+
+<script>
+  document.addEventListener('DOMContentLoaded', () => {
+    document.querySelectorAll('.project-card[data-href]').forEach((card) => {
+      card.addEventListener('click', () => {
+        window.open((card as HTMLElement).dataset.href, '_blank', 'noopener,noreferrer');
+      });
+    });
+  });
+</script>
