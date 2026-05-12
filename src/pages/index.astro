@@ -154,13 +154,12 @@ const sections = [
   .tiles {
     display: grid;
     grid-template-columns: 1fr 1fr;
-    height: 50vh;
-    background-image: url("/assets/images/profile_picture.jpg") !important;
+    height: auto;
     position: relative;
   }
 
   .tiles article {
-    height: auto; /* Let content dictate height */
+    height: 50vh;
     min-height: 200px;
     width: 100%;
   }
@@ -187,23 +186,23 @@ const sections = [
     }
 
     .tiles {
-      height: 70vh;
+      grid-template-columns: 1fr 1fr;
     }
 
-
+    .tiles article {
+      height: 45vh;
+      width: 100% !important;
+    }
   }
 
   /* Mobile responsiveness */
   @media screen and (max-width: 736px) {
     .tiles {
       grid-template-columns: 1fr;
-      height: auto;
     }
 
     .tiles article {
       height: 40vh;
     }
-
-
   }
 </style>
