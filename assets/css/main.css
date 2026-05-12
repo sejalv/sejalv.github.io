@@ -3770,6 +3770,11 @@ input, select, textarea {
 
 /* Footer */
 
+	#footer {
+		background: #242943;
+		position: relative;
+	}
+
 	#footer .copyright {
 		font-size: 0.8em;
 		list-style: none;
@@ -4112,15 +4117,12 @@ input, select, textarea {
       background-size: cover;
       background-position: center;
       color: #ffffff;
-      height: 75vh !important;
-      min-height: 575px !important;
-      max-height: 62vh !important;
+      min-height: 62vh;
       margin-top: 0;
-      /* Add display flex for centering content */
       display: flex;
       flex-direction: column;
       justify-content: flex-start;
-	  padding-bottom: 0.5rem;
+      padding-bottom: 0.5rem;
     }
 
     .about-section:before {
@@ -4171,7 +4173,8 @@ input, select, textarea {
 
     @media screen and (max-width: 980px) {
       .about-section {
-        height: 30vh !important;
+        min-height: 40vh;
+        height: auto;
       }
 
       .about-section .inner {
@@ -4182,13 +4185,13 @@ input, select, textarea {
 
     @media screen and (max-width: 736px) {
       .about-section {
-        height: auto !important;
-        min-height: 60vh !important;
+        min-height: unset;
+        height: auto;
       }
 
       .about-section .inner {
         max-width: 90%;
-        padding: 3rem 1.5rem;
+        padding: 2rem 1.5rem;
       }
     }
 
