@@ -1,22 +1,11 @@
 ---
 careerHistory:
-  - id: "company-7"
-    company: "Consulting"
-    period: "2024 - Present"
-    location: "Berlin, Germany"
-    title: "Data Lead"
-    description: "Consulting growth-stage startups on modern data architecture and platform strategy."
-    highlights:
-      - "Built an AWS-based data infrastructure with Iceberg and modern lakehouse architecture, to enable self-service analytics"
-      - "Advised on data strategy and roadmap for growth optimization, feature adoption & customer intelligence"
-    technologies: ["AWS", "FiveTran", "Metabase", "SQL", "Mixpanel"]
-  
+
   - id: "company-6"
     company: "Zalando"
-    period: "2022 - 2023"
-    location: "Berlin, Germany"
-    title: "Staff ML Engineer"
-    description: "Scaled experimentation platforms and A/B Testing infrastructure to optimize pricing models."
+    period: "Berlin, Germany"
+    title: "Staff ML Engineer, 2022 - 2023"
+    description: "Scaled A/B testing infrastructure for dynamic pricing experiments and optimizing pricing models."
     highlights:
       - "Conducted A/B testing for marketing campaigns"
       - "Supported product development with market analysis"
@@ -25,9 +14,8 @@ careerHistory:
   
   - id: "company-5"
     company: "Temedica"
-    period: "2020 - 2022"
     location: "Munich, Germany"
-    title: "Data Platform Lead"
+    title: "Data/ML Platform Lead, 2020 - 2022"
     description: "Led the development of a regulated Healthcare data platform for patient journey research from ground up."
     highlights:
       - "Built NLP pipeline for customer feedback analysis"
@@ -37,9 +25,8 @@ careerHistory:
   
   - id: "company-4"
     company: "Freeletics"
-    period: "2018 - 2020"
     location: "Munich, Germany"
-    title: "Senior Data Engineer"
+    title: "Senior Data Engineer, 2018 - 2019"
     description: "Redesigned data platform for real-time analytics on fitness journeys of 39+ MM users."
     highlights:
       - "Spearheaded migration to cloud architecture"
@@ -49,9 +36,8 @@ careerHistory:
   
   - id: "company-3"
     company: "LexisNexis Risk Solutions"
-    period: "2015 - 2016"
     location: "Mumbai, India"
-    title: "Senior Software Engineer"
+    title: "Senior Software Engineer, 2015 - 2017"
     description: "Developed data products for Fraud Analytics in Life & Health Insurance space."
     highlights:
       - "Maintained customer database"
@@ -61,9 +47,8 @@ careerHistory:
   
   - id: "company-2"
     company: "JPMorgan Chase Services"
-    period: "2013 - 2015"
     location: "Mumbai, India"
-    title: "Business Intelligence Developer"
+    title: "Business Intelligence, 2013 - 2015"
     description: "Data modeling & BI reporting for Credit Risk, Finance & Marketing Analytics groups."
     highlights:
       - "Created weekly performance reports"
@@ -72,10 +57,9 @@ careerHistory:
     technologies: ["SQL", "Python", "Excel", "Power BI", "Looker"]
   
   - id: "company-1"
-    company: "Here Technologies"
-    period: "2009 - 2013"
+    company: "HERE Technologies"
     location: "Mumbai, India"
-    title: "Data Analyst"
+    title: "Data Analyst, 2009 - 2013"
     description: "Data management & quality analysis for navigation maps in automotives."
     highlights:
       - "Reduced process inefficiencies by 20%"

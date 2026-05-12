@@ -3,6 +3,9 @@
 import MainLayout from '../layouts/MainLayout.astro';
 import BookshelfPanel from '../components/BookshelfPanel.astro';
 import CareerSection from '../components/CareerSection.astro';
+
+const careerData = await import('../data/career.md');
+const careerHistory = careerData.frontmatter.careerHistory;
 ---
 
 <MainLayout
@@ -20,11 +23,43 @@ import CareerSection from '../components/CareerSection.astro';
   <div id="main">
     <!-- Career Section Component -->
     <div class="inner">
-      <CareerSection
-        title="Experience"
-        gridColumns={4}
-        showTitle={true}
-      />
+      <CareerSection id="experience" title="Experience" gridColumns={3}>
+        {careerHistory.map((job, idx) => (
+          <article class="career-card" data-card-index={`career-${idx}`} data-controls={`career-dev-extra-${idx}`}>
+            <div class="career-content">
+              <h3>{job.company}</h3>
+              <span class="date">{job.period}</span>
+              <span class="date">{job.location}</span>
+              <p class="job-title">{job.title}</p>
+              <p>{job.description}</p>
+            </div>
+            {(job.highlights || job.technologies) && (
+              <div id={`career-dev-extra-${idx}`} class="card-extra" hidden>
+                {job.highlights && (
+                  <div class="highlights">
+                    <h4>Highlights</h4>
+                    <ul>
+                      {job.highlights.map((hl) => (
+                        <li>{hl}</li>
+                      ))}
+                    </ul>
+                  </div>
+                )}
+                {job.technologies && (
+                  <div class="technologies">
+                    <h4>Technologies</h4>
+                    <div class="tech-tags">
+                      {job.technologies.map((tech) => (
+                        <span class="tech-tag">{tech}</span>
+                      ))}
+                    </div>
+                  </div>
+                )}
+              </div>
+            )}
+          </article>
+        ))}
+      </CareerSection>
     </div>
 
     <div class="sub-inner">
@@ -44,3 +79,30 @@ import CareerSection from '../components/CareerSection.astro';
         </section> -->
   </div>
 </MainLayout>
+
+<style>
+  .card-extra {
+    padding: 0 1.5em 1.25em 1.5em;
+    border-top: 1px solid rgba(255, 255, 255, 0.08);
+  }
+</style>
+
+<script>
+  document.addEventListener('DOMContentLoaded', function() {
+    document.querySelectorAll('.career-card').forEach((card) => {
+      card.addEventListener('click', function(event) {
+        if (event.target.closest('a, button, .card-extra')) return;
+
+        const controlsId = this.getAttribute('data-controls');
+        const extra = controlsId ? document.getElementById(controlsId) : null;
+        if (!extra) return;
+
+        if (extra.hasAttribute('hidden')) {
+          extra.removeAttribute('hidden');
+        } else {
+          extra.setAttribute('hidden', '');
+        }
+      });
+    });
+  });
+  </script>
