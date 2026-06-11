@@ -28,7 +28,7 @@ const sections = [
     id: 'projects',
     label: 'Projects',
     title: 'Projects',
-    gridColumns: 3,
+    gridColumns: 4,
     items: projectData.frontmatter.projectHistory
   }
 ];
@@ -41,9 +41,7 @@ const sections = [
     bannerDescription="Data & ML Platforms | Tech Leadership | Data Strategy"
     showBanner={true}>
     <Fragment slot="description-sub-text">
-        Over 15 years, I have led initiatives in scaling ML platforms to drive pricing experimentation, empower healthcare research, and improve product adoption by millions of users.
-        
-        I work with growth-stage startups and scaleups across e-Commerce, Digital Health, and Energy, on Production ML systems, user-centric data products, and cross-team enablement.
+        Over 15 years, I have built and scaled ML platforms for growth-stage startups and scaleups across e-Commerce, Digital Health, and Energy, to drive pricing experimentation, empower healthcare research, and improve product adoption by millions of users.        
     </Fragment>
 
   <div id="main">
@@ -57,7 +55,7 @@ const sections = [
               <section class="section-container">
                 <CareerSection id={section.id} title={section.title} gridColumns={section.gridColumns}>
                   {section.items.map((item, idx) => (
-                    <article class={`career-card${section.id === 'projects' ? ' project-card' : ''}`} data-card-index={`${section.id}-${idx}`} data-controls={`${section.id}-extra-${idx}`} data-href={section.id === 'projects' && item.links?.[0]?.trim() ? (item.links[0].startsWith('http') ? item.links[0] : `https://${item.links[0]}`) : undefined}>
+                    <article class={`career-card${section.id === 'projects' ? ' project-card' : ''}`} data-card-index={`${section.id}-${idx}`} data-controls={`${section.id}-extra-${idx}`} data-href={section.id === 'projects' && item.links?.[0]?.trim() ? (item.links[0].startsWith('http') || item.links[0].startsWith('/') ? item.links[0] : `https://${item.links[0]}`) : undefined}>
                       <div class="career-content">
                         <h3>{item.company}</h3>
                         {item.period && <span class="date">{item.period}</span>}
@@ -123,7 +121,17 @@ const sections = [
   document.addEventListener('DOMContentLoaded', () => {
     document.querySelectorAll('.project-card[data-href]').forEach((card) => {
       card.addEventListener('click', () => {
-        window.open((card as HTMLElement).dataset.href, '_blank', 'noopener,noreferrer');
+        const href = (card as HTMLElement).dataset.href;
+        if (href?.toLowerCase().endsWith('.pdf')) {
+          const a = document.createElement('a');
+          a.href = href;
+          a.download = '';
+          document.body.appendChild(a);
+          a.click();
+          document.body.removeChild(a);
+        } else {
+          window.open(href, '_blank', 'noopener,noreferrer');
+        }
       });
     });
   });
