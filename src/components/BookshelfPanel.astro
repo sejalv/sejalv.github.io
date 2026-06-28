@@ -9,7 +9,7 @@ export interface Props {
   title?: string;
 }
 
-const { showTitle = true, minBooks = 0, maxBooks = 1, title = "Bookshelf" } = Astro.props;
+const { showTitle = true, minBooks = 0, maxBooks = undefined, title = "Bookshelf" } = Astro.props;
 
 const booksData = await Astro.glob('../data/books.md');
 const books = booksData[0].frontmatter.books;
@@ -56,11 +56,12 @@ const featuredBooks = books.slice(minBooks, maxBooks);
           </div>
 
           <div class="modal-book-details">
-            <div class="book-excerpt">
-              <h5>My Thoughts</h5>
-              <p>{book.excerpt}</p>
-            </div>
-
+            {book.excerpt && (
+              <div class="book-excerpt">
+                <h5>My Thoughts</h5>
+                <p>{book.excerpt}</p>
+              </div>
+            )}
           </div>
         </div>
       </Modal>

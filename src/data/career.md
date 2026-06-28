@@ -27,7 +27,7 @@ careerHistory:
     company: "Freeletics"
     location: "Munich, Germany"
     title: "Senior Data Engineer, 2018 - 2019"
-    description: "Redesigned data platform for real-time analytics on fitness journeys of 39+ MM users."
+    description: "Redesigned real-time analytics infrastructure, enabling personalized recommendations to 39+ MM fitness users."
     highlights:
       - "Spearheaded migration to cloud architecture"
       - "Implemented real-time data processing architecture"
