@@ -3,26 +3,29 @@ consultingHistory:
   
   - id: "company-7"
     company: "Data Strategy"
-    description: "Domain-driven roadmap aligning Product, ML, and Data Science"
+    desc: "Domain-driven alignment with Product, ML, and Data Science"
     highlights:
-      - "Conducted A/B testing for marketing campaigns"
-      - "Supported product development with market analysis"
-      - "Built scalable ETL processes handling 2TB+ daily"
-      
+      - "Domain-driven alignment with Product, ML, and Data Science"
+      - "ML Platform foundations"
+      - "User-centric data products"
+  
   - id: "company-6"
-    company: "Platform Foundations"
-    description: "Production ML systems and scalable data architecture"
+    company: "Data & ML Products"
+    desc: "Personalisation, growth optimization, and product experimentation"
     highlights:
-      - "Built an AWS-based data infrastructure with Iceberg and lakehouse architecture, to enable self-service analytics"
-      - "Advised on data strategy and roadmap for growth optimization & customer intelligence"
+      - "Personalisation"
+      - "Growth Optimization"
+      - "Product Experimentation"
 
   - id: "company-5"
-    company: "Data & ML Products"
-    description: "Personalisation, growth optimization, and product experimentation"
+    company: "Clients"
+    desc: "Production ML systems and scalable data architecture"
     highlights:
-      - "Built NLP pipeline for customer feedback analysis"
-      - "Established data governance framework"
-      - "Designed executive KPI dashboard"
+      - "Sennder (Logistics)"
+      - "Hive Technologies (SaaS Logistics)"
+      - "Gorilla (Energy Margin Intelligence)"
+      - "Bling (Fintech)"
+
   
 ---
 

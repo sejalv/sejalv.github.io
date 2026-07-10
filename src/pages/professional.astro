@@ -38,10 +38,10 @@ const sections = [
     title="Professional"
     bannerImage='/assets/images/Office_Brainstorming_Session.jpg'
     bannerTitle="Professional"
-    bannerDescription="Data & ML Platforms | Tech Leadership | Data Strategy"
+    bannerDescription="Data Strategy | ML Systems | Tech Leadership"
     showBanner={true}>
     <Fragment slot="description-sub-text">
-        Over 15 years, I have built ML platforms to drive pricing experimentation, healthcare research, and product adoption at scale. I work in product-led environments to enable business growth and product innovation at growth-stage startups & scale-ups.
+        Over 15 years, I have built ML systems to drive pricing experimentation, healthcare research, and product adoption at scale. At present, I work as a fractional leader and consult growth-stage startups and scale-ups.
 
         I am passionate about climate tech & sustainability, fostering an inclusive environment, and promoting gender diversity through community building.
        
@@ -58,27 +58,23 @@ const sections = [
               <section class="section-container">
                 <CareerSection id={section.id} title={section.title} gridColumns={section.gridColumns}>
                   {section.items.map((item, idx) => (
-                    <article class={`career-card${section.id === 'projects' ? ' project-card' : ''}`} data-card-index={`${section.id}-${idx}`} data-controls={`${section.id}-extra-${idx}`} data-href={section.id === 'projects' && item.links?.[0]?.trim() ? (item.links[0].startsWith('http') || item.links[0].startsWith('/') ? item.links[0] : `https://${item.links[0]}`) : undefined}>
+                    <article class={`career-card${section.id === 'projects' ? ' project-card' : ''}`} data-card-index={`${section.id}-${idx}`} data-href={section.id === 'projects' && item.links?.[0]?.trim() ? (item.links[0].startsWith('http') || item.links[0].startsWith('/') ? item.links[0] : `https://${item.links[0]}`) : undefined}>
                       <div class="career-content">
                         <h3>{item.company}</h3>
                         {item.period && <span class="date">{item.period}</span>}
                         {item.location && <span class="date">{item.location}</span>}
                         {item.title && <p class="job-title">{item.title}</p>}
                         {item.description && <p class="description">{item.description}</p>}
-                      </div>
-                      {(item.links) && (
-                        <div id={`${section.id}-extra-${idx}`} hidden>
-                          <div class="about-actions">
-                            <ul class="actions">
-                              {item.links.map((hl) => (
-                                  <li>
-                                  <a href={hl} target="_blank" rel="noopener noreferrer" class="button icon fa-bookmark">{item.header}</a>
-                                  </li>
-                                ))}
+                        {item.highlights?.length > 0 && (
+                          <div class="highlights">
+                            <ul>
+                              {item.highlights.map((hl) => (
+                                <li>{hl}</li>
+                              ))}
                             </ul>
                           </div>
-                        </div>
-                      )}
+                        )}
+                      </div>
                     </article>
                   ))}
                 </CareerSection>
@@ -117,6 +113,14 @@ const sections = [
 
   :global(.career-card.project-card) {
     cursor: pointer;
+  }
+
+  :global(.highlights li::before) {
+    content: none;
+  }
+
+  :global(.highlights li) {
+    padding-left: 0;
   }
 </style>
 
