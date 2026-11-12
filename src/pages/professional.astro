@@ -8,6 +8,8 @@ const careerData = await import('../data/career.md');
 const consultingData = await import('../data/consulting.md');
 const projectData = await import('../data/projects.md');
 
+const timelinePeriod = (date = '') => date.replace(/\s*-\s*/, '—');
+
 // Define sections with their data
 const sections = [
   {
@@ -41,24 +43,68 @@ const sections = [
     bannerDescription="Data Strategy | ML Systems | Tech Leadership"
     showBanner={true}>
     <Fragment slot="description-sub-text">
-        Over 15 years, I have built ML systems to drive pricing experimentation, healthcare research, and product adoption at scale. At present, I work as a fractional leader and consult growth-stage startups and scale-ups.
-
-        I am passionate about climate tech & sustainability, fostering an inclusive environment, and promoting gender diversity through community building.
-       
+        Over 16 years, I have built ML systems that drive pricing experimentation, clinical NLP, and product adoption at scale. 
+        I work in product-led environments on production ML infrastructure, user-centric data products, cross-team initiatives, and stakeholder management.
     </Fragment>
-
   <div id="main">
       <SectionNavigation
       backgroundImage='/assets/images/business-dashboard.jpg'
       sections={sections.map(s => ({ id: s.id, label: s.label }))}>
 
+          <span id="consulting" class="anchor-target"></span>
+          <section class="section-container consulting-layout">
+            <div class="consulting-intro">
+              <header class="major">
+                <h2>Consulting</h2>
+              </header>
+              <div class="consulting-metric">
+                <span>0→1</span>
+                <p>ML systems</p>
+              </div>
+              <p class="consulting-summary">
+                As a fractional leader, I advise growth-stage startups and scale-ups on data strategy, first ML systems, and platform foundations.
+                Clients include Gorilla (Energy), Hive Technologies (B2B SaaS), Sennder (Logistics), Caresyntax (Digital Health), and Bling (FinTech).
+              </p>
+            </div>
+
+            <div class="consulting-cards">
+              {consultingData.frontmatter.consultingHistory.map((item) => (
+                <article class="consulting-card">
+                  <h4>{item.company}</h4>
+                  <p>{item.desc}</p>
+                  <!-- <p>{item.highlights?.join(' · ')}</p> -->
+                </article>
+              ))}
+            </div>
+          </section>
+
           {sections.map((section) => (
+            section.id !== 'consulting' &&
             <>
               <span id={section.id} class="anchor-target"></span>
-              <section class="section-container">
-                <CareerSection id={section.id} title={section.title} gridColumns={section.gridColumns}>
+              <section class={`section-container professional-section${section.id === 'experience' ? ' experience-section' : ''}`}>
+                <CareerSection id={section.id} title={section.title} gridColumns={section.id === 'experience' ? 1 : section.gridColumns} interactive={section.id === 'experience'}>
+                  {section.id === 'experience' && (
+                    <div slot="timeline" class="career-timeline" aria-label="Career at a glance">
+                      {section.items.map((item, idx) => (
+                        <button
+                          class={`timeline-entry${idx === 0 ? ' is-active' : ''}`}
+                          type="button"
+                          data-experience-target={`experience-${idx}`}
+                          aria-controls={`experience-${idx}`}
+                          aria-expanded={idx === 0 ? 'true' : 'false'}
+                        >
+                          <span class="timeline-period">{timelinePeriod(item.date)}</span>
+                          <span class="timeline-details">
+                            <strong>{item.company}</strong>
+                            <span>{item.title}</span>
+                          </span>
+                        </button>
+                      ))}
+                    </div>
+                  )}
                   {section.items.map((item, idx) => (
-                    <article class={`career-card${section.id === 'projects' ? ' project-card' : ''}`} data-card-index={`${section.id}-${idx}`} data-href={section.id === 'projects' && item.links?.[0]?.trim() ? (item.links[0].startsWith('http') || item.links[0].startsWith('/') ? item.links[0] : `https://${item.links[0]}`) : undefined}>
+                    <article id={section.id === 'experience' ? `experience-${idx}` : undefined} class={`career-card${section.id === 'projects' ? ' project-card' : ''}${section.id === 'experience' ? ' experience-card' : ''}`} data-card-index={`${section.id}-${idx}`} data-href={section.id === 'projects' && item.links?.[0]?.trim() ? (item.links[0].startsWith('http') || item.links[0].startsWith('/') ? item.links[0] : `https://${item.links[0]}`) : undefined} hidden={section.id === 'experience' && idx !== 0}>
                       <div class="career-content">
                         <h3>{item.company}</h3>
                         {item.period && <span class="date">{item.period}</span>}
@@ -86,15 +132,24 @@ const sections = [
   </div>
 </MainLayout>
 
+
 <style>
   :global(section#banner.major h1) {
     font-size: 1.8em !important;
   }
 
+  :global(section#banner.major) {
+    height: 57vh !important;
+    max-height: 26em !important;
+    min-height: 18em !important;
+    padding: 2.25em 0 1em;
+    background-position: center 70%;
+  }
+
   :global(section#banner) {
     padding: 4.5em 0 0.5em 0 !important;
-    min-height: 14em !important;
-    max-height: 24em !important;
+    min-height: 12em !important;
+    max-height: 18em !important;
   }
 
   :global(section#banner .description-sub-text) {
@@ -102,6 +157,11 @@ const sections = [
   }
 
   @media screen and (max-width: 736px) {
+    :global(section#banner.major) {
+      height: auto;
+      min-height: 0;
+    }
+  
     :global(section#banner) {
       max-height: none !important;
     }
@@ -122,10 +182,177 @@ const sections = [
   :global(.highlights li) {
     padding-left: 0;
   }
+
+  .consulting-layout {
+    max-width: 70rem;
+    margin: 0 auto 2em;
+    padding: clamp(2rem, 5vw, 4rem) !important;
+  }
+
+  :global(.professional-section) {
+    margin-left: auto;
+    margin-right: auto;
+    max-width: 70rem;
+  }
+
+  .consulting-period {
+    color: #5E5A52;
+    margin: 1.2rem 0 3.5rem;
+  }
+
+  .consulting-metric {
+    color: #2F6657;
+    margin-bottom: 2.5rem;
+  }
+
+  .consulting-metric span {
+    display: block;
+    font-size: 1.75em;
+  }
+
+  .consulting-metric p {
+    color: #5E5A52;
+    margin: 0.45rem 0 0;
+  }
+
+  .consulting-intro h3 {
+    margin: 0 0 1.5rem;
+  }
+
+  .consulting-summary {
+    margin: 0;
+    max-width: 55rem;
+  }
+
+  .consulting-cards {
+    display: grid;
+    gap: 1.25rem;
+    margin-top: 3rem;
+  }
+
+  .consulting-card {
+    background: #F6F1E7;
+    border: 1px solid #D8CFBE;
+    border-radius: 0.75rem;
+    padding: 2rem 2.5rem;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+  }
+
+  .consulting-card:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.1);
+  }
+
+  .consulting-card h4 {
+    color: #2F6657;
+    margin: 0 0 1rem;
+  }
+
+  .consulting-card p {
+    margin: 0;
+  }
+
+  .career-timeline {
+    border-left: 2px solid #1D1C1A;
+    display: grid;
+    gap: 1.5rem;
+    margin: 1.5rem 0 3rem 0.6rem;
+    padding-left: 2.5rem;
+  }
+
+  .timeline-entry {
+    appearance: none;
+    background: transparent;
+    border: 0;
+    color: #1D1C1A;
+    cursor: pointer;
+    display: grid;
+    font: inherit;
+    gap: 1.5rem;
+    grid-template-columns: 10rem minmax(0, 1fr);
+    letter-spacing: normal;
+    line-height: 1.5;
+    min-height: 0;
+    padding: 0;
+    position: relative;
+    text-align: left;
+    text-transform: none;
+    width: 100%;
+  }
+
+  .timeline-entry,
+  .timeline-entry:hover,
+  .timeline-entry:active {
+    box-shadow: none !important;
+  }
+
+  .timeline-entry::before {
+    background: #2F6657;
+    border-radius: 50%;
+    content: '';
+    height: 0.7rem;
+    left: -2.9rem;
+    position: absolute;
+    top: 0.5rem;
+    width: 0.7rem;
+  }
+
+  .timeline-period,
+  .timeline-details > span {
+    color: #5E5A52;
+    font-size: 0.9em;
+  }
+
+  .timeline-details {
+    display: grid;
+    gap: 0.25rem;
+  }
+
+  .timeline-details strong {
+    font-size: 1.2em;
+  }
+
+  .timeline-entry:hover .timeline-details strong,
+  .timeline-entry.is-active .timeline-details strong {
+    color: #2F6657;
+  }
+
+  :global(.experience-card[hidden]) {
+    display: none !important;
+  }
+
+  @media screen and (max-width: 736px) {
+    .consulting-layout {
+      padding: 2rem 1.5rem !important;
+    }
+
+    .consulting-period,
+    .consulting-metric {
+      margin-bottom: 2.5rem;
+    }
+
+    .consulting-card {
+      padding: 1.5rem;
+    }
+
+    .career-timeline {
+      margin-left: 0.4rem;
+      padding-left: 1.75rem;
+    }
+
+    .timeline-entry {
+      gap: 0.75rem;
+      grid-template-columns: 6.5rem minmax(0, 1fr);
+    }
+
+    .timeline-entry::before {
+      left: -2.125rem;
+    }
+  }
 </style>
 
 <script>
-  document.addEventListener('DOMContentLoaded', () => {
+  const initializeProfessionalInteractions = () => {
     document.querySelectorAll('.project-card[data-href]').forEach((card) => {
       card.addEventListener('click', () => {
         const href = (card as HTMLElement).dataset.href;
@@ -141,5 +368,24 @@ const sections = [
         }
       });
     });
-  });
+
+    document.addEventListener('click', (event) => {
+      const entry = (event.target as Element).closest<HTMLButtonElement>('.timeline-entry');
+      if (!entry) return;
+
+      const targetId = entry.dataset.experienceTarget;
+      if (!targetId) return;
+
+      document.querySelectorAll<HTMLElement>('.experience-card').forEach((card) => {
+        card.hidden = card.id !== targetId;
+      });
+      document.querySelectorAll<HTMLButtonElement>('.timeline-entry').forEach((button) => {
+        const isActive = button === entry;
+        button.classList.toggle('is-active', isActive);
+        button.setAttribute('aria-expanded', String(isActive));
+      });
+    });
+  };
+
+  initializeProfessionalInteractions();
 </script>

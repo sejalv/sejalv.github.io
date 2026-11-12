@@ -6,6 +6,7 @@ export interface Props {
   title?: string;
   showTitle?: boolean;
   gridColumns?: number;
+  interactive?: boolean;
   items?: Array<{
     company: string;
     period?: string;
@@ -22,6 +23,7 @@ const {
   title = "Experience",
   showTitle = true,
   gridColumns = 4,
+  interactive = false,
   items = []
 } = Astro.props;
 ---
@@ -33,9 +35,20 @@ const {
     </header>
   )}
 
-  <div class="career-grid" style={`--career-columns: ${gridColumns};`}>
-    <slot />
-  </div>
+  {interactive ? (
+    <div class="career-interactive">
+      <div class="career-timeline-pane">
+        <slot name="timeline" />
+      </div>
+      <div class="career-grid" style={`--career-columns: ${gridColumns};`}>
+        <slot />
+      </div>
+    </div>
+  ) : (
+    <div class="career-grid" style={`--career-columns: ${gridColumns};`}>
+      <slot />
+    </div>
+  )}
 </section>
 
 <style>
@@ -50,9 +63,33 @@ const {
     grid-template-columns: repeat(var(--career-columns, 4), 1fr);
   }
 
+  .career-interactive {
+    align-items: start;
+    display: grid;
+    gap: 3rem;
+    grid-template-columns: minmax(0, 1.2fr) minmax(18rem, 1fr);
+  }
+
+  .career-interactive .career-grid {
+    margin: 1.5rem 0 0;
+  }
+
+  .career-interactive :global(.experience-card) {
+    background: transparent;
+    border: 0;
+    border-radius: 0;
+    box-shadow: none;
+  }
+
+  .career-interactive :global(.experience-card:hover) {
+    box-shadow: none;
+    transform: none;
+  }
+
   :global(.career-card) {
-    background: rgba(0, 0, 0, 0.06);
-    border-radius: 4px;
+    background: #F6F1E7;
+    border: 1px solid #D8CFBE;
+    border-radius: 0.75rem;
     overflow: hidden;
     transition: transform 0.3s ease, box-shadow 0.3s ease;
     cursor: default;
@@ -60,12 +97,12 @@ const {
   }
 
   :global(.career-card:hover) {
-    transform: translateY(-5px);
-    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
+    transform: translateY(-2px);
+    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.1);
   }
 
   :global(.career-content) {
-    padding: 1.5em;
+    padding: 2rem 2.5rem;
   }
 
   :global(.career-content h3) {
@@ -75,16 +112,16 @@ const {
 
   :global(.date) {
     display: block;
-    font-size: 0.8em;
+    font-size: 0.87em;
     font-weight: bold;
-    color: rgba(212, 212, 255, 0.5);
+    color: #1D1C1A;
     margin-bottom: 1em;
   }
 
   :global(.job-title) {
     font-size: 0.85em;
     font-weight: bold;
-    color: rgba(212, 212, 255, 0.5);
+    color: #1D1C1A;
     margin-bottom: 1em;
   }
 
@@ -110,7 +147,7 @@ const {
   :global(.card-extra .highlights li) {
     font-size: 0.8em;
     margin: 0.25em 0;
-    color: rgba(255, 255, 255, 0.8);
+    color: #5E5A52;
     position: relative;
     padding-left: 1em;
   }
@@ -163,10 +200,10 @@ const {
   }
 
   :global(.description) {
-    font-size: 0.87em;
+    font-size: 0.8em;
     line-height: 1.4;
     margin-bottom: 1em;
-    color: rgba(255, 255, 255, 0.8);
+    color: #5E5A52;
   }
 
   :global(.highlights) {
@@ -188,7 +225,7 @@ const {
     font-size: 0.8em;
     line-height: 1.3;
     margin-bottom: 0.3em;
-    color: rgba(255, 255, 255, 0.7);
+    color: #5E5A52;
     position: relative;
     padding-left: 1em;
   }
@@ -227,7 +264,7 @@ const {
 
   /* Modal Content Styles */
   :global(.career-modal-content) {
-    color: #ffffff;
+    color: #1D1C1A;
   }
 
   :global(.modal-header-info) {
@@ -245,7 +282,7 @@ const {
   }
 
   :global(.modal-location) {
-    color: rgba(255, 255, 255, 0.7);
+    color: #5E5A52;
     font-size: 0.9em;
   }
 
@@ -279,7 +316,7 @@ const {
     padding-left: 1.5rem;
     position: relative;
     line-height: 1.5;
-    color: rgba(255, 255, 255, 0.8);
+    color: #5E5A52;
   }
 
   :global(.modal-highlights li::before) {
@@ -310,6 +347,11 @@ const {
     .career-grid {
       grid-template-columns: repeat(2, 1fr);
     }
+
+    .career-interactive {
+      gap: 2rem;
+      grid-template-columns: 1fr;
+    }
   }
 
   @media (max-width: 768px) {
@@ -319,6 +361,10 @@ const {
 
     :global(.career-card) {
       flex-direction: column;
+    }
+
+    :global(.career-content) {
+      padding: 1.5rem;
     }
 
     :global(.career-header) {
@@ -360,6 +406,3 @@ const {
   });
   */
 </script>
-
-
-

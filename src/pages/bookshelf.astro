@@ -11,9 +11,6 @@ import BookshelfPanel from '../components/BookshelfPanel.astro';
         <header class="major">
           <h1>Bookshelf</h1>
         </header>
-        <p align="left">
-          Books I can recommend...
-        </p>
       </div>
     </section>
 
@@ -23,12 +20,22 @@ import BookshelfPanel from '../components/BookshelfPanel.astro';
   </div>
 
   <style>
+  /*  #F6F1E7; */
+    :global(#main) {
+      background-color: #F6F1E7;
+    }
+
     .fixed-header {
       width: 100%;
-      background-color: #242943;
-      color: white;
+      background-color: #F6F1E7;
+      color: #1D1C1A;
       padding: 0.5rem 0;
       z-index: 10;
+    }
+
+    #two {
+      background-color: #F6F1E7;
+      color: #1D1C1A;
     }
 
     .fixed-header .inner {

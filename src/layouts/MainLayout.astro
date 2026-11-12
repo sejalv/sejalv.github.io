@@ -9,6 +9,7 @@ export interface Props {
   bannerTitle?: string;
   bannerDescription?: string;
   showBanner?: boolean;
+  showAbout?: boolean;
 }
 
 const {
@@ -17,7 +18,8 @@ const {
   bannerImage,
   bannerTitle,
   bannerDescription,
-  showBanner = true
+  showBanner = true,
+  showAbout = false
 } = Astro.props;
 ---
 
@@ -31,6 +33,8 @@ const {
     <link rel="stylesheet" href="/assets/css/main.css" />
     <noscript><link rel="stylesheet" href="/assets/css/noscript.css" /></noscript>
     <link rel="stylesheet" href="/assets/css/scroll-buttons.css" />
+    <link rel="stylesheet" href="[https://api.fontshare.com/v2/css?f](https://api.fontshare.com/v2/css?f)[]=zodiak@400,700&f[]=satoshi@400,500,700&display=swap">
+    <!-- <link rel="stylesheet" href="/assets/css/theme-light.css" /> -->
     <link rel="icon" type="image/svg+xml" href="/assets/images/favicon.svg" />
   </head>
 
@@ -50,18 +54,13 @@ const {
           <li><a href="/">Home</a></li>
           <li><a href="/professional">Professional</a></li>
           <li><a href="/personal">Personal Notes</a></li>
-          <li><a href="#about">About Me</a></li>
         </ul>
-        <ul class="actions stacked">
-          <li><a href="#" class="button primary fit contact-modal-trigger">Contact</a></li>
-        </ul>
-        <br/>
         <ul class="icons">
-          <li><a href="https://www.linkedin.com/in/vaidyasejal/" class="icon brands alt fa-linkedin-in"><span class="label">LinkedIn</span></a></li>
           <li><a href="https://github.com/sejalv" class="icon brands alt fa-github"><span class="label">GitHub</span></a></li>
+          <li><a href="https://www.linkedin.com/in/vaidyasejal/" target="_blank" rel="noopener noreferrer" class="icon brands alt fa-linkedin-in"><span class="label">LinkedIn</span></a></li>
         </ul>
       </nav>
-
+      
       {showBanner && (
         <section id="banner" class="major" style={`background-image: url(${bannerImage})`}>
           <div class="inner">
@@ -78,52 +77,37 @@ const {
         </section>
       )}
 
-      <!-- Main Content -->
-      <div id="main">
-        <slot />
-      </div>
-
-      <!-- About Section 
-      Over 14 years, I've built scalable data platforms to empower organisations with decision-making systems and high-leverage tooling.
-              </br></br>
-              My goal is to make data a core product capability, not just a support function, by enabling teams to move faster, serve customers better, and make smarter decisions at scale.
-      as a strategic asset
-      
-      I often write about platform engineering, systems thinking, FLINTA leadership, and life in Berlin.
-      and cultural narratives that challenge dominant structures
-
-       <div class="about-image">
-              <img src="/assets/images/profile_sejal.jpg" alt="Sejal Vaidya" />
-            </div>
-      -->
-      <section id="about" class="about-section" style="background-image: url('/assets/images/pic07.jpg');">
+      <slot name="before-about" />
+      {showAbout && <section id="about" class="about-section" style="background-image: url('/assets/images/pic07.jpg');">
         <div class="inner">
           <div class="about-content">
             <div class="about-text">
               <header class="major">
                 <h2>About Me</h2>
               </header>
-              I am a Data & Engineering professional, living in Berlin.
-              I am drawn to thoughful problems that create real impact, and write about tech, data, and culture.
+              I am a Data & ML Engineering professional, living in Berlin.
+              I own production ML systems from roadmap and evaluation to production rollout, and keep model metrics tied to business outcomes.
               </br></br>
-              If you are looking for a consultation on your data strategy, platform foundations, or a collaboration on a project, feel free to reach out here:
+              I care about sustainability, social impact and inclusive teams. I speak and mentor in Berlin's tech communities and promote gender diversity through community building. 
               </br></br>
-              <div class="about-actions">
-                <ul class="actions">
-                  <li>
-                    <a href="#contact-modal" class="button primary contact-modal-trigger">Contact</a>
-                  </li>
-                  <li>
-                    <a href="https://www.linkedin.com/in/vaidyasejal/" target="_blank" rel="noopener noreferrer" class="button icon brands fa-linkedin-in">LinkedIn</a>
-                  </li>
-                </ul>
-              </div>
+              I'm open to Senior/Staff ML Engineering roles in Berlin and remote EU, and to selected consulting on data strategy and ML platforms.
+              <!-- If you are looking for a consultation on your data strategy, ML platforms, or a collaboration on a project, feel free to reach out here. -->
             </div>
-           
+            <div class="about-image">
+              <img src="/assets/images/profile_sv.jpg" alt="Sejal Vaidya" />
+            </div>
           </div>
+          <ul class="actions about-actions">
+            <li><a href="#contact-modal" class="button primary contact-modal-trigger">Contact</a></li>
+            <li><a href="https://www.linkedin.com/in/vaidyasejal/" target="_blank" rel="noopener noreferrer" class="button icon brands fa-linkedin-in">LinkedIn</a></li>
+          </ul>
         </div>
-        <a href="#contact-modal" class="more scrolly contact-modal-trigger"></a>
-      </section>
+      </section>}
+
+      <!-- Main Content -->
+      <div id="main">
+        <slot />
+      </div>
 
       <!-- Contact Modal -->
       <ContactModal />
@@ -154,10 +138,23 @@ const {
           white-space: pre-line;
       }
 
-      /* About section styles */
+      /* About section styles 
+        background-color: #F6F1E7;
+      */
       .about-section {
         margin-top: 0;
         position: relative;
+        background-color: #F6F1E7;
+        background-image: none !important;
+      }
+
+      .about-section::before {
+        display: none;
+      }
+
+      .about-section .inner {
+        padding-top: 0.25rem;
+        padding-bottom: 0.25rem;
       }
 
       .about-content {
@@ -165,6 +162,22 @@ const {
         align-items: center;
         gap: 2rem;
         max-width: 100%;
+      }
+
+      .about-actions {
+        gap: 2.25em;
+        margin: 2.5rem 0 0;
+      }
+
+      .about-actions li {
+        padding-left: 0;
+      }
+
+      .about-actions .button {
+        font-size: 0.8em;
+        height: 3.2em;
+        line-height: 3.2em;
+        padding: 0 1.4em;
       }
 
       .about-text {
@@ -180,6 +193,7 @@ const {
         border-radius: 8px;
         overflow: hidden;
         border: none;
+        transform: translateX(4rem);
       }
 
       .about-image img {
@@ -189,15 +203,17 @@ const {
         object-position: center 70% !important;
       }
 
-      .about-actions {
-        margin-top: 1rem;
-      }
-
       /* Tablet responsiveness for About section */
       @media screen and (max-width: 980px) {
         .about-section {
           min-height: 40vh;
           height: auto;
+        }
+
+        .about-image {
+          width: 260px;
+          height: 320px;
+          transform: none;
         }
       }
 
@@ -208,17 +224,39 @@ const {
           height: auto;
           padding: 0;
         }
+
+        .about-content {
+          align-items: flex-start;
+          flex-direction: column;
+        }
+
+        .about-image {
+          align-self: center;
+          width: min(100%, 300px);
+          height: auto;
+          aspect-ratio: 2 / 3;
+        }
       }
 
-      /* Footer height reduction */
+      /* Footer */
       #footer .inner {
-        padding: 1em 0 0.5em 0 !important;
+        display: flex;
+        align-items: center;
+        padding: 2em 0 1.25em 0 !important;
+      }
+
+      #footer .copyright {
+        margin-bottom: 0;
       }
 
       @media screen and (max-width: 736px) {
         #footer .inner {
-          padding: 1em 0 0.5em 0 !important;
+          align-items: flex-start;
+          flex-direction: column;
+          gap: 1em;
+          padding: 1.5em 0 1em 0 !important;
         }
+
       }
     </style>
   </body>

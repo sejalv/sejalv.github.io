@@ -1,15 +1,14 @@
 ---
 // components/BookshelfPanel.astro
-import Modal from './Modal.astro';
-
 export interface Props {
   showTitle?: boolean;
   minBooks?: number;
   maxBooks?: number;
   title?: string;
+  showViewAll?: boolean;
 }
 
-const { showTitle = true, minBooks = 0, maxBooks = undefined, title = "Bookshelf" } = Astro.props;
+const { showTitle = true, minBooks = 0, maxBooks = undefined, title = "Bookshelf", showViewAll = false } = Astro.props;
 
 const booksData = await Astro.glob('../data/books.md');
 const books = booksData[0].frontmatter.books;
@@ -31,7 +30,7 @@ const featuredBooks = books.slice(minBooks, maxBooks);
 
   <div class="showcase-grid">
     {featuredBooks.map((book) => (
-      <article class="showcase-card clickable-card" data-modal-target={`modal-book-${book.title.replace(/\s+/g, '-').toLowerCase()}`}>
+      <article class="showcase-card">
         <div class="showcase-image">
           <img src={book.image} alt={book.title} />
         </div>
@@ -41,33 +40,9 @@ const featuredBooks = books.slice(minBooks, maxBooks);
           {book.subtext && <p class="subtext"><i>{book.subtext}</i></p>}
         </div>
       </article>
-      <!-- Modal for each book -->
-      <Modal id={`modal-book-${book.title.replace(/\s+/g, '-').toLowerCase()}`} title={book.title} type="book">
-        <div class="book-modal-content">
-          <div class="modal-book-header">
-            <div class="modal-book-image">
-              <img src={book.image} alt={book.title} />
-            </div>
-            <div class="modal-book-info">
-              <h4>{book.title}</h4>
-              <p class="modal-author">by {book.author}</p>
-              {book.subtext && <p class="modal-subtext"><i>{book.subtext}</i></p>}
-            </div>
-          </div>
-
-          <div class="modal-book-details">
-            {book.excerpt && (
-              <div class="book-excerpt">
-                <h5>My Thoughts</h5>
-                <p>{book.excerpt}</p>
-              </div>
-            )}
-          </div>
-        </div>
-      </Modal>
     ))}
-    <a href="/bookshelf" class="view-all-link">View all books →</a>
   </div>
+  {showViewAll && <a class="view-all-link" href="/bookshelf">View all books &rarr;</a>}
 </section>
 
 
@@ -83,7 +58,8 @@ const featuredBooks = books.slice(minBooks, maxBooks);
     text-decoration: none;
     border-bottom: 1px solid transparent;
     transition: border-bottom-color 0.3s ease;
-    margin-left: 1em;
+    display: inline-block;
+    margin-top: 1.5em;
   }
 
   .view-all-link:hover {
@@ -99,11 +75,12 @@ const featuredBooks = books.slice(minBooks, maxBooks);
 
   .showcase-card {
     display: flex;
-    background: rgba(0, 0, 0, 0.06);
+    background: #F6F1E7;
+    border: 1px solid #D8CFBE;
     border-radius: 6px;
     overflow: hidden;
     transition: transform 0.3s ease, box-shadow 0.3s ease;
-    cursor: pointer;
+    cursor: default;
     position: relative;
   }
 
@@ -140,87 +117,21 @@ const featuredBooks = books.slice(minBooks, maxBooks);
     display: block;
     font-size: 0.8em;
     font-weight: bold;
-    color: rgba(212, 212, 255, 0.6);
+    color: #1D1C1A;
     margin-bottom: 0.5em;
   }
 
   .subtext {
     font-size: 0.85em;
     margin: 0.5em 0;
-    color: rgba(255, 255, 255, 0.8);
+    color: #5E5A52;
   }
 
   .excerpt {
     font-size: 0.8em;
     line-height: 1.4;
-    color: rgba(255, 255, 255, 0.7);
+    color: #5E5A52;
     margin: 0.5em 0 0 0;
-  }
-
-  /* Modal Content Styles */
-  .book-modal-content {
-    color: #ffffff;
-  }
-
-  .modal-book-header {
-    display: flex;
-    gap: 1.5rem;
-    margin-bottom: 2rem;
-    padding-bottom: 1.5rem;
-    border-bottom: 1px solid rgba(255, 255, 255, 0.1);
-  }
-
-  .modal-book-image {
-    flex-shrink: 0;
-    width: 120px;
-    height: 180px;
-    overflow: hidden;
-    border-radius: 6px;
-  }
-
-  .modal-book-image img {
-    width: 100%;
-    height: 100%;
-    object-fit: cover;
-  }
-
-  .modal-book-info {
-    flex: 1;
-  }
-
-  .modal-book-info h4 {
-    margin: 0 0 0.5rem 0;
-    font-size: 1.3em;
-    color: #ffffff;
-  }
-
-  .modal-author {
-    font-size: 1em;
-    color: #87c5a4;
-    margin-bottom: 0.5rem;
-    font-weight: 500;
-  }
-
-  .modal-subtext {
-    font-size: 0.9em;
-    color: rgba(255, 255, 255, 0.7);
-    margin-bottom: 1rem;
-    font-style: italic;
-  }
-
-  .modal-book-details h5 {
-    color: #87c5a4;
-    margin-bottom: 1rem;
-    font-size: 1.1em;
-  }
-
-  .book-excerpt {
-    margin-bottom: 2rem;
-  }
-
-  .book-excerpt p {
-    line-height: 1.6;
-    color: rgba(255, 255, 255, 0.9);
   }
 
   /* Responsive design */
@@ -237,32 +148,5 @@ const featuredBooks = books.slice(minBooks, maxBooks);
     .showcase-grid {
       grid-template-columns: 1fr;
     }
-
-    .modal-book-header {
-      flex-direction: column;
-      text-align: center;
-    }
-
-    .modal-book-image {
-      width: 150px;
-      height: 225px;
-      margin: 0 auto;
-    }
   }
 </style>
-
-<script>
-  document.addEventListener('DOMContentLoaded', function() {
-    document.querySelectorAll('.showcase-card').forEach(card => {
-      card.addEventListener('click', function(e) {
-        e.preventDefault();
-        const modalId = this.getAttribute('data-modal-target');
-        const modal = document.getElementById(modalId);
-        if (modal) {
-          modal.classList.add('active');
-          document.body.style.overflow = 'hidden';
-        }
-      });
-    });
-  });
-</script>
