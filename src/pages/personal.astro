@@ -8,21 +8,20 @@ import SectionNavigation from '../components/SectionNavigation.astro';
 
 <MainLayout
     title="Personal Notes"
-    bannerImage='/assets/images/wm-bike.jpeg'
+    bannerImage='/assets/images/watermelon_bicycle.jpg'
     bannerTitle="Personal Notes"
     bannerDescription="Essays | Stories | Humor"
     showBanner={true}>
     <Fragment slot="description-sub-text">
-        Beyond tech and data, I reflect on culture through the lens of human behaviour, economics, and intersectional feminism. 
-        I also explore comedy, satire, and creative writing, and organise the FLINTA Sketch Writers group.
+        Beyond tech and data, I reflect on culture through the lens of intersectional feminism and behavioural economics. 
+        I also explore comedy, satire, and creative writing, and organise the <a href="https://sejalv.substack.com/" target="_blank" rel="noopener noreferrer">FLINTA Sketch Writers group</a>.
     </Fragment>
 
     <div id="main">
       <SectionNavigation
-      backgroundImage='/assets/images/wm-bike.jpeg'
+      backgroundImage='/assets/images/watermelon_bicycle.jpg'
       sections={[
-          { id: 'bookshelf', label: 'Bookshelf' },
-          { id: 'blog', label: 'Blog' }
+          { id: 'bookshelf', label: 'Bookshelf' }
         ]}>
 
           <span id="bookshelf" class="anchor-target"></span>
@@ -31,17 +30,26 @@ import SectionNavigation from '../components/SectionNavigation.astro';
               title="Bookshelf"
               maxBooks={3}
               showTitle={true}
+              showViewAll={true}
             />
           </section>
-
-          <span id="blog" class="anchor-target"></span>
-          <section class="section-container">
-            <header class="major">
-              <h2>Blog</h2>
-            </header>
-            <p>Coming soon on <a href="https://sejalv.substack.com/">Substack</a></p>
-          </section>
-
         </SectionNavigation>
   </div>
 </MainLayout>
+
+<style>
+  :global(section#banner.major) {
+    height: 57vh;
+    max-height: 26em;
+    min-height: 18em;
+    padding: 2.25em 0 1em;
+    background-position: 80% 67% !important;
+  }
+
+  @media screen and (max-width: 736px) {
+    :global(section#banner.major) {
+      height: auto;
+      min-height: 0;
+    }
+  }
+</style>

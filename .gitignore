@@ -2,3 +2,6 @@
 .claude/
 node_modules/
 public/assets/.DS_Store
+.astro/
+dist/
+.DS_Store

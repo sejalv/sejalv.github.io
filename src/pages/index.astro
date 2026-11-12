@@ -34,22 +34,21 @@ const sections = [
   bannerTitle={siteConfig.bannerTitle}
   bannerDescription={siteConfig.bannerDescription}
   showBanner={true}
+  showAbout={true}
 >
 <Fragment slot="description-sub-text">
-  I build data & ML systems for products to scale data-driven decisioning.
+  I turn data & machine learning into measurable product value.
     <div class="banner-text">
-       My work spans across e-Commerce, Digital Health, and Fintech, shaping data strategy that drive product innovation and growth.
+       My work spans across Health Tech, e-Commerce, and research-driven domains, shaping data strategy that drives product innovation and growth.
        <br/>
     </div>
   </div>
 </Fragment>
+
   <div class="banner-scroll-button">
     <a href="#one" class="more scrolly"></a>
   </div>
 
-  <!-- Tiles Section 
-  lead platform strategy, empowering teams to adopt a culture of experimentation and continuous improvement.
-   -->
   <section id="one" class="tiles">
     {sections.map((section) => (
       <article class={section.color} style={`background-image: url(${section.image});`}>
@@ -62,9 +61,6 @@ const sections = [
         </header>
       </article>
     ))}
-    <div class="scroll-button-wrapper">
-      <a href="#about" class="more scrolly"></a>
-    </div>
   </section>
 </MainLayout>
 
@@ -164,11 +160,17 @@ const sections = [
   }
 
   .scroll-button-wrapper {
-    position: absolute;
-    bottom: -1;
-    left: 50%;
-    transform: translateX(-50%);
+    position: relative;
+    display: flex;
+    justify-content: center;
+    height: 4rem;
+    margin: 0;
     z-index: 10;
+  }
+
+  .scroll-button-wrapper .more {
+    bottom: auto;
+    top: 0;
   }
 
 
