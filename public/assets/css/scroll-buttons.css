@@ -70,6 +70,7 @@ Scroll Button Styles
 }
 
 /* Scroll controls are currently hidden site-wide. */
-.more.scrolly {
+.more,
+.scrolly {
   display: none;
 }
