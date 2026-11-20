@@ -43,8 +43,8 @@ const sections = [
     bannerDescription="Data Strategy | ML Systems | Tech Leadership"
     showBanner={true}>
     <Fragment slot="description-sub-text">
-        Over 16 years, I have built ML systems that drive pricing experimentation, clinical NLP, and product adoption at scale. 
-        I work in product-led environments on production ML infrastructure, user-centric data products, cross-team initiatives, and stakeholder management.
+        I work in product-led environments on ML platforms, user-centric data products, cross-team initiatives, and stakeholder management.
+        I own production ML systems from problem framing and evaluation to production rollout, and keep model metrics tied to business outcomes.
     </Fragment>
   <div id="main">
       <SectionNavigation
@@ -62,11 +62,10 @@ const sections = [
                 <p>ML systems</p>
               </div>
               <p class="consulting-summary">
-                As a fractional leader, I advise growth-stage startups and scale-ups on data strategy, first ML systems, and platform foundations.
+                As a fractional leader, I advise growth-stage startups and scale-ups on domain-driven roadmap, build-vs-buy decisions, and platform foundations for ML systems.
                 Clients include Gorilla (Energy), Hive Technologies (B2B SaaS), Sennder (Logistics), Caresyntax (Digital Health), and Bling (FinTech).
               </p>
             </div>
-
             <div class="consulting-cards">
               {consultingData.frontmatter.consultingHistory.map((item) => (
                 <article class="consulting-card">
@@ -163,11 +162,20 @@ const sections = [
     }
   
     :global(section#banner) {
+      padding: 5.5em 0 0.5em 0 !important;
       max-height: none !important;
     }
 
     :global(section#banner .description-sub-text) {
       font-size: 0.95rem !important;
+    }
+
+    :global(section#banner header.major) {
+      margin-bottom: 0.5em;
+    }
+
+    :global(section#banner > .inner .content > *) {
+      margin-bottom: -1.5em;
     }
   }
 
