@@ -50,6 +50,14 @@ import SectionNavigation from '../components/SectionNavigation.astro';
     :global(section#banner.major) {
       height: auto;
       min-height: 0;
+      background-position: left bottom !important;
+      background-size: cover !important;
     }
+
+    :global(section#banner) {
+      padding: 4em 0 0.5em 0 !important;
+      max-height: none !important;
+    }
+
   }
 </style>

@@ -5,7 +5,7 @@ import MainLayout from '../layouts/MainLayout.astro';
 const siteConfig = {
   title: "Sejal Vaidya",
   bannerTitle: "", // Remove the "About Me" title
-  bannerDescription: "Data Professional & Writer",
+  bannerDescription: "Data & ML Professional",
 };
 
 const sections = [
@@ -34,7 +34,6 @@ const sections = [
   bannerTitle={siteConfig.bannerTitle}
   bannerDescription={siteConfig.bannerDescription}
   showBanner={true}
-  showAbout={true}
 >
 <Fragment slot="description-sub-text">
   I turn data & machine learning into measurable product value.
@@ -43,6 +42,33 @@ const sections = [
        <br/>
     </div>
   </div>
+</Fragment>
+
+<Fragment slot="before-about">
+  <section id="about" class="about-section">
+    <div class="inner">
+      <div class="about-content">
+        <div class="about-text">
+          <header class="major">
+            <h2>About Me</h2>
+          </header>
+          I am a Data & ML Engineering professional, living in Berlin.
+          Over 16 years, I have built data & ML systems that drive pricing experimentation, healthcare intelligence, and product adoption at scale.
+          <br /><br />
+          I care about sustainability, social impact and inclusive teams. I speak and mentor in Berlin's tech communities and promote gender diversity through community building.
+          <br /><br />
+          <i>I'm open to Senior/Staff ML Engineering roles in Berlin and remote EU, and to selected consulting on data strategy and ML platforms.</i>
+        </div>
+        <div class="about-image">
+          <img src="/assets/images/profile_sv.jpg" alt="Sejal Vaidya" />
+        </div>
+      </div>
+      <ul class="actions about-actions">
+        <li><a href="#contact-modal" class="button primary contact-modal-trigger">Contact</a></li>
+        <li><a href="https://www.linkedin.com/in/vaidyasejal/" target="_blank" rel="noopener noreferrer" class="button icon brands fa-linkedin-in">LinkedIn</a></li>
+      </ul>
+    </div>
+  </section>
 </Fragment>
 
   <div class="banner-scroll-button">
@@ -65,6 +91,67 @@ const sections = [
 </MainLayout>
 
 <style>
+  :global(.about-section) {
+    margin-top: 0;
+    position: relative;
+    background-color: #F6F1E7;
+  }
+
+  :global(.about-section)::before {
+    display: none;
+  }
+
+  :global(.about-section .inner) {
+    padding-top: 0.25rem;
+    padding-bottom: 0.25rem;
+  }
+
+  :global(.about-content) {
+    display: flex;
+    align-items: center;
+    gap: 2rem;
+    max-width: 100%;
+  }
+
+  :global(.about-actions) {
+    gap: 2.25em;
+    margin: 2.5rem 0 0;
+  }
+
+  :global(.about-actions li) {
+    padding-left: 0;
+  }
+
+  :global(.about-actions .button) {
+    font-size: 0.8em;
+    height: 3.2em;
+    line-height: 3.2em;
+    padding: 0 1.4em;
+  }
+
+  :global(.about-text) {
+    flex: 1;
+    text-align: left;
+    font-weight: 400;
+  }
+
+  :global(.about-image) {
+    flex-shrink: 0;
+    width: 350px;
+    height: 400px;
+    border-radius: 8px;
+    overflow: hidden;
+    border: none;
+    transform: translateX(4rem);
+  }
+
+  :global(.about-image img) {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    object-position: center 70% !important;
+  }
+
   /* Control the background image positioning in the banner */
   :global(#banner) {
     background-position: center 55% !important;
@@ -182,6 +269,17 @@ const sections = [
 
   /* Tablet responsiveness */
   @media screen and (max-width: 980px) {
+    :global(.about-section) {
+      min-height: 40vh;
+      height: auto;
+    }
+
+    :global(.about-image) {
+      width: 260px;
+      height: 320px;
+      transform: none;
+    }
+
     :global(#banner) {
       height: 30vh;
     }
@@ -198,6 +296,24 @@ const sections = [
 
   /* Mobile responsiveness */
   @media screen and (max-width: 736px) {
+    :global(.about-section) {
+      min-height: unset;
+      height: auto;
+      padding: 0;
+    }
+
+    :global(.about-content) {
+      align-items: flex-start;
+      flex-direction: column;
+    }
+
+    :global(.about-image) {
+      align-self: center;
+      width: min(100%, 300px);
+      height: auto;
+      aspect-ratio: 2 / 3;
+    }
+
     .tiles {
       grid-template-columns: 1fr;
     }
